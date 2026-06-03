@@ -102,20 +102,26 @@
   .stage { position: relative; display: flex; justify-content: center; perspective: 1500px; }
   .glow { position: absolute; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(255,77,157,0.30), rgba(155,43,224,0.22) 45%, transparent 70%); filter: blur(60px); z-index: 0; animation: floaty 11s ease-in-out infinite; }
   @keyframes floaty { 0%,100%{ transform: translateY(0) scale(1);} 50%{ transform: translateY(-22px) scale(1.06);} }
-  .phone { position: relative; z-index: 2; width: 300px; height: 612px; border-radius: 48px; background: linear-gradient(155deg,#2a2430,#0c0a0e 62%); padding: 11px; box-shadow: var(--sh-lg); transition: transform .3s var(--ease); transform-style: preserve-3d; }
-  .phone::after { content:""; position:absolute; inset:0; border-radius:48px; pointer-events:none; background: linear-gradient(125deg, rgba(255,255,255,0.16), transparent 32%); }
-  .screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #fff; }
-  .island { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 84px; height: 25px; background: #0c0a0e; border-radius: 100px; z-index: 30; }
+  /* device scales as one unit to fit any screen (no reflow / overlap) */
+  .phone-fit { position: relative; margin: 0 auto; }
+  .phone { position: absolute; top: 0; left: 0; z-index: 2; width: 340px; height: 735px; border-radius: 62px; background: linear-gradient(145deg,#48474f 0%,#1b1a20 36%,#050506 100%); padding: 13px; box-shadow: var(--sh-lg), inset 0 0 0 1.5px rgba(255,255,255,0.12); transform-origin: top left; transform: scale(var(--s,1)); }
+  .phone::after { content:""; position:absolute; inset:0; border-radius:62px; pointer-events:none; background: linear-gradient(125deg, rgba(255,255,255,0.20), transparent 24%); }
+  .phone::before { content:""; position:absolute; right:-3px; top:178px; width:3px; height:66px; border-radius:0 3px 3px 0; background: linear-gradient(#4a4952,#1a1820); }
+  .pbtn { position:absolute; left:-3px; width:3px; border-radius:3px 0 0 3px; background: linear-gradient(#4a4952,#1a1820); }
+  .pbtn.v1 { top:150px; height:34px; } .pbtn.v2 { top:196px; height:56px; }
+  .screen { position: relative; width: 100%; height: 100%; border-radius: 50px; overflow: hidden; background: #fff; }
+  .island { position: absolute; top: 15px; left: 50%; transform: translateX(-50%); width: 100px; height: 31px; background: #050506; border-radius: 100px; z-index: 30; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05); }
+  .home-ind { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 126px; height: 5px; border-radius: 100px; background: rgba(10,10,15,0.30); z-index: 27; }
   .statusbar { position: absolute; top: 0; left: 0; right: 0; height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; font-family: var(--font-mono); font-size: 12px; font-weight: 700; z-index: 22; }
   .statusbar svg { width: 15px; height: 15px; }
 
-  .navbar { position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: rgba(255,255,255,0.94); backdrop-filter: blur(8px); border-top: 1px solid var(--line); display: flex; z-index: 24; }
+  .navbar { position: absolute; bottom: 0; left: 0; right: 0; height: 70px; padding-bottom: 12px; background: rgba(255,255,255,0.96); backdrop-filter: blur(8px); border-top: 1px solid var(--line); display: flex; z-index: 24; }
   .navbar button { flex: 1; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; justify-content: center; color: var(--faint); font-family: var(--font-body); font-size: 8.5px; font-weight: 600; transition: color .25s; }
   .navbar button svg { width: 19px; height: 19px; }
   .navbar button.on { color: var(--accent); }
 
-  .views { position: absolute; top: 0; left: 0; right: 0; bottom: 60px; overflow: hidden; }
-  .view { position: absolute; inset: 0; padding: 50px 16px 14px; overflow-y: auto; opacity: 0; transform: translateY(16px) scale(0.985); transition: opacity .5s var(--ease), transform .5s var(--ease); pointer-events: none; }
+  .views { position: absolute; top: 0; left: 0; right: 0; bottom: 70px; overflow: hidden; }
+  .view { position: absolute; inset: 0; padding: 52px 17px 14px; overflow: hidden; opacity: 0; transform: translateY(16px) scale(0.985); transition: opacity .5s var(--ease), transform .5s var(--ease); pointer-events: none; }
   .view.on { opacity: 1; transform: none; pointer-events: auto; }
   .scr-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .scr-h .ttl { font-family: var(--font-display); font-weight: 800; font-size: 19px; letter-spacing: -0.02em; }
@@ -183,13 +189,11 @@
   /* ===================== SCROLLYTELLING JOURNEY ===================== */
   .pinwrap { position: relative; }
   .pin-stage { position: sticky; top: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(14px,2.2vh,24px); padding: 84px 0 24px; }
-  .pin-cap { text-align: center; max-width: 560px; padding: 0 var(--gutter); }
+  .pin-cap { text-align: center; max-width: 560px; padding: 0 var(--gutter); min-height: 96px; display: flex; flex-direction: column; justify-content: flex-end; }
   .pin-cap .eyebrow { display: block; margin-bottom: 10px; }
   .pin-cap h3 { font-size: clamp(22px,3.4vw,36px); letter-spacing: -0.03em; }
   .pin-cap.swap .eyebrow, .pin-cap.swap h3 { animation: capSwap .5s var(--ease); }
   @keyframes capSwap { 0% { opacity: 0; transform: translateY(8px);} 100% { opacity: 1; transform: none;} }
-  .pin-stage .phone { width: auto; height: min(66vh, 580px); aspect-ratio: 300 / 612; padding: 1.6vh; border-radius: 8vh; }
-  .pin-stage .screen { border-radius: 6vh; }
   .pin-steps .pin-step { height: 92vh; }
   .jdots { display: flex; gap: 9px; }
   .jdots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-2); transition: all .35s var(--ease); }
@@ -341,8 +345,6 @@
     /* immersive, properly-sized device on mobile */
     .hero { padding-bottom: 48px; }
     .stage { width: 100%; padding: 8px 0 4px; }
-    .phone { width: min(84vw, 330px); height: auto; aspect-ratio: 300 / 612; padding: 3.4vw; border-radius: 12vw; }
-    .screen { border-radius: 9.5vw; }
     .glow { width: 96vw; height: 96vw; }
     .demo-hint { justify-content: center; text-align: center; }
     .hero-left { text-align: center; }
@@ -385,7 +387,8 @@
       <div class="fchip fc4" data-par="-18"><span class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Booking</div>
       <div class="fchip fc5" data-par="16"><span class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></span>Referrals</div>
 
-      <div class="phone" id="phone" data-tilt>
+      <div class="phone-fit"><div class="phone" id="phone">
+        <span class="pbtn v1"></span><span class="pbtn v2"></span>
         <div class="screen">
           <div class="island"></div>
           <div class="statusbar"><span>9:41</span><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="14" width="3" height="6" rx="1"/><rect x="7" y="10" width="3" height="10" rx="1"/><rect x="12" y="6" width="3" height="14" rx="1"/><rect x="17" y="3" width="3" height="17" rx="1"/></svg></div>
@@ -445,8 +448,9 @@
             <button data-go="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>Shop</button>
             <button data-go="book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Book</button>
           </div>
+          <div class="home-ind"></div>
         </div>
-      </div>
+      </div></div>
     </div>
   </div>
 </section>
@@ -475,7 +479,8 @@
       <span class="eyebrow" id="capK">The patient loop · 01</span>
       <h3 id="capT">A branded home screen that feels like yours</h3>
     </div>
-    <div class="phone" id="phone2">
+    <div class="phone-fit"><div class="phone" id="phone2">
+      <span class="pbtn v1"></span><span class="pbtn v2"></span>
       <div class="screen">
         <div class="island"></div>
         <div class="statusbar"><span>9:41</span><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="14" width="3" height="6" rx="1"/><rect x="7" y="10" width="3" height="10" rx="1"/><rect x="12" y="6" width="3" height="14" rx="1"/><rect x="17" y="3" width="3" height="17" rx="1"/></svg></div>
@@ -486,8 +491,9 @@
           <button data-go="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>Shop</button>
           <button data-go="book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Book</button>
         </div>
+        <div class="home-ind"></div>
       </div>
-    </div>
+    </div></div>
     <div class="jdots" id="jdots"><i class="on"></i><i></i><i></i><i></i></div>
   </div>
   <div class="pin-steps">
@@ -696,6 +702,29 @@
     var h = document.documentElement.scrollHeight - innerHeight;
     progress.style.width = (h>0 ? (scrollY/h)*100 : 0) + '%';
   }, {passive:true});
+
+  // scale each phone to fit its space — perfect format on any screen
+  function fitPhone(phone){
+    var fit = phone.parentElement;
+    if(!fit || fit.className.indexOf('phone-fit') < 0) return;
+    var s, pin = phone.closest('.pin-stage');
+    if(pin){
+      var aw = pin.clientWidth - 24;
+      var cap = pin.querySelector('.pin-cap'), dots = pin.querySelector('.jdots');
+      var ah = window.innerHeight - 78 - (cap ? cap.offsetHeight : 96) - (dots ? dots.offsetHeight : 18) - 52;
+      s = Math.min(aw/340, ah/735, 1.08);
+    } else {
+      var st = phone.closest('.stage');
+      s = Math.min(((st ? st.clientWidth : 340) - 6)/340, 1);
+    }
+    s = Math.max(0.5, s);
+    phone.style.setProperty('--s', s);
+    fit.style.width = (340*s) + 'px'; fit.style.height = (735*s) + 'px';
+  }
+  function fitAll(){ document.querySelectorAll('.phone-fit > .phone').forEach(fitPhone); }
+  addEventListener('resize', fitAll);
+  window.addEventListener('load', fitAll);
+  fitAll();
 
   function countTo(el, to, opts){
     opts = opts || {};
