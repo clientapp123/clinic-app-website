@@ -771,8 +771,8 @@
     if(pin){
       var aw = pin.clientWidth - 24;
       var cap = pin.querySelector('.pin-cap'), dots = pin.querySelector('.jdots');
-      var ah = window.innerHeight - 78 - (cap ? cap.offsetHeight : 96) - (dots ? dots.offsetHeight : 18) - 52;
-      s = Math.min(aw/340, ah/735, 1.08);
+      var ah = window.innerHeight - 78 - (cap ? cap.offsetHeight : 96) - (dots ? dots.offsetHeight : 18) - 40;
+      s = Math.min(aw/340, ah/735, 1.32);
     } else {
       var st = phone.closest('.stage');
       s = Math.min(((st ? st.clientWidth : 340) - 6)/340, 1);
