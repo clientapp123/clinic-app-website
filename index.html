@@ -106,7 +106,7 @@
   .glow { position: absolute; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(255,77,157,0.30), rgba(155,43,224,0.22) 45%, transparent 70%); filter: blur(60px); z-index: 0; animation: floaty 11s ease-in-out infinite; }
   @keyframes floaty { 0%,100%{ transform: translateY(0) scale(1);} 50%{ transform: translateY(-22px) scale(1.06);} }
   /* device scales as one unit to fit any screen (no reflow / overlap) */
-  .phone-fit { position: relative; margin: 0 auto; transform-origin: center center; }
+  .phone-fit { position: relative; margin: 0 auto; transform-origin: center center; will-change: transform; }
   .phone { position: absolute; top: 0; left: 0; z-index: 2; width: 340px; height: 735px; border-radius: 62px; background: linear-gradient(145deg,#48474f 0%,#1b1a20 36%,#050506 100%); padding: 13px; box-shadow: var(--sh-lg), inset 0 0 0 1.5px rgba(255,255,255,0.12); transform-origin: top left; transform: scale(var(--s,1)); }
   .phone::after { content:""; position:absolute; inset:0; border-radius:62px; pointer-events:none; background: linear-gradient(125deg, rgba(255,255,255,0.20), transparent 24%); }
   .phone::before { content:""; position:absolute; right:-3px; top:178px; width:3px; height:66px; border-radius:0 3px 3px 0; background: linear-gradient(#4a4952,#1a1820); }
@@ -757,11 +757,6 @@
   var fine = window.matchMedia('(pointer:fine)').matches;
 
   var nav = document.getElementById('nav'), progress = document.getElementById('progress');
-  addEventListener('scroll', function(){
-    nav.classList.toggle('scrolled', scrollY > 12);
-    var h = document.documentElement.scrollHeight - innerHeight;
-    progress.style.width = (h>0 ? (scrollY/h)*100 : 0) + '%';
-  }, {passive:true});
 
   // scale each phone to fit its space — perfect format on any screen
   function fitPhone(phone){
@@ -845,19 +840,28 @@
   }
   setScreen(phone, 'home');
 
-  // scroll-zoom: the phone grows to fill the screen as you scroll the pinned section
+  // one rAF-throttled scroll handler: nav state, progress bar, and the phone zoom
   var heroSec = document.getElementById('demo'), phoneFit = phone.parentElement, dotsEl = document.getElementById('jdots');
-  function heroZoom(){
-    if(reduce) return;
-    var total = heroSec.offsetHeight - window.innerHeight;
-    var p = total > 0 ? Math.min(Math.max(-heroSec.getBoundingClientRect().top / total, 0), 1) : 0;
-    phoneFit.style.transform = 'scale(' + (1 + p * 0.32).toFixed(3) + ')';
-    var fade = Math.max(0, 1 - p * 2.4);
-    if (pinCap) pinCap.style.opacity = fade;
-    if (dotsEl) dotsEl.style.opacity = fade;
+  var ticking = false;
+  function onScroll(){
+    ticking = false;
+    nav.classList.toggle('scrolled', scrollY > 12);
+    var docH = document.documentElement.scrollHeight - innerHeight;
+    progress.style.width = (docH > 0 ? (scrollY/docH)*100 : 0) + '%';
+    if (!reduce && heroSec){
+      var total = heroSec.offsetHeight - innerHeight;
+      var p = total > 0 ? Math.min(Math.max(-heroSec.getBoundingClientRect().top / total, 0), 1) : 0;
+      var ease = p*p*(3 - 2*p);                 // smoothstep — gentler ramp
+      phoneFit.style.transform = 'scale(' + (1 + ease * 0.32).toFixed(3) + ')';
+      var fade = Math.max(0, 1 - p * 2.4).toFixed(2);
+      if (pinCap) pinCap.style.opacity = fade;
+      if (dotsEl) dotsEl.style.opacity = fade;
+    }
   }
-  addEventListener('scroll', heroZoom, { passive: true });
-  heroZoom();
+  function queueScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(onScroll); } }
+  addEventListener('scroll', queueScroll, { passive: true });
+  addEventListener('resize', queueScroll);
+  onScroll();
 
   var mS=document.getElementById('mSlider'), pS=document.getElementById('pSlider'), mC=document.getElementById('mCount'), pC=document.getElementById('pCount'),
       mrr=document.getElementById('mrr'), ann=document.getElementById('annual'), bars=document.getElementById('bars'),
