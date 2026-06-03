@@ -91,7 +91,6 @@
 
   /* ===================== HERO + LIVE DEMO ===================== */
   .hero { padding: clamp(18px,3vw,34px) 0 0; }
-  .hero-spacer { height: clamp(90px, 24vh, 260px); }
   .hero-intro { max-width: 920px; }
   .hero-intro.center { text-align: center; margin: 0 auto; }
   .hero h1 { font-size: clamp(28px,4vw,50px); letter-spacing: -0.035em; line-height: 1.04; text-wrap: balance; }
@@ -265,7 +264,7 @@
 
   /* ===================== SCROLLYTELLING JOURNEY ===================== */
   .pinwrap { position: relative; }
-  .pin-stage { position: sticky; top: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(14px,2.2vh,24px); padding: 84px 0 24px; }
+  .pin-stage { position: sticky; top: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: clamp(14px,2.2vh,24px); padding: 92px 0 24px; }
   .pin-cap { text-align: center; max-width: 560px; padding: 0 var(--gutter); min-height: 96px; display: flex; flex-direction: column; justify-content: flex-end; }
   .pin-cap .eyebrow { display: block; margin-bottom: 10px; }
   .pin-cap h3 { font-size: clamp(22px,3.4vw,36px); letter-spacing: -0.03em; }
@@ -452,8 +451,6 @@
     <p class="lead">Your clinic's own branded app — memberships, rewards and booking. Scroll to watch it work, or tap any tab.</p>
     <div class="hero-ctas"><a href="#book" class="btn btn-ink" data-magnetic>Book a demo</a><a href="#revenue" class="tlink">See the revenue math ↓</a></div>
   </div>
-
-  <div class="hero-spacer" aria-hidden="true"></div>
 
   <div class="pin-stage">
     <div class="pin-glow"></div>
