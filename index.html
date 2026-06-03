@@ -166,6 +166,20 @@
   .navbar .scan { flex: 0 0 auto; color: var(--muted); }
   .navbar .scan .fab { width: 46px; height: 46px; border-radius: 50%; background: var(--grad); display: grid; place-items: center; margin-top: -22px; box-shadow: 0 8px 18px -6px rgba(155,43,224,.6); }
   .navbar .scan .fab svg { width: 20px; height: 20px; color: #fff; }
+
+  /* pinned demo atmosphere */
+  .pin-stage > .pin-cap, .pin-stage > .phone-fit, .pin-stage > .jdots { position: relative; z-index: 2; }
+  .pin-glow { position: absolute; top: 50%; left: 50%; width: clamp(320px, 50vh, 540px); height: clamp(320px, 50vh, 540px); border-radius: 50%; z-index: 0; pointer-events: none; background: radial-gradient(circle, rgba(255,77,157,0.34), rgba(155,43,224,0.24) 46%, transparent 70%); filter: blur(72px); animation: glowPulse 7s ease-in-out infinite; }
+  @keyframes glowPulse { 0%,100% { transform: translate(-50%,-50%) scale(1); opacity: .8; } 50% { transform: translate(-50%,-53%) scale(1.13); opacity: 1; } }
+  .pin-orb { position: absolute; border-radius: 50%; z-index: 1; pointer-events: none; filter: blur(1px); opacity: .65; }
+  .pin-orb.o1 { width: 14px; height: 14px; background: var(--pink); left: 17%; top: 32%; animation: drift 9s ease-in-out infinite; }
+  .pin-orb.o2 { width: 10px; height: 10px; background: var(--violet); right: 19%; top: 26%; animation: drift 11s ease-in-out infinite reverse; }
+  .pin-orb.o3 { width: 9px; height: 9px; background: var(--accent); left: 23%; bottom: 22%; animation: drift 10s ease-in-out infinite; }
+  .pin-orb.o4 { width: 7px; height: 7px; background: var(--pink); right: 24%; bottom: 26%; animation: drift 12s ease-in-out infinite reverse; }
+  @keyframes drift { 0%,100% { transform: translate(0,0); } 50% { transform: translate(16px,-22px); } }
+  .phone-fit.float { animation: phoneFloat 6s ease-in-out infinite; }
+  @keyframes phoneFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .spark { position: absolute; width: 11px; height: 11px; z-index: 3; pointer-events: none; background: var(--grad); border-radius: 2px; box-shadow: 0 0 10px rgba(214,36,159,.5); }
   .statusbar { position: absolute; top: 0; left: 0; right: 0; height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; font-family: var(--font-mono); font-size: 12px; font-weight: 700; z-index: 22; }
   .statusbar svg { width: 15px; height: 15px; }
 
@@ -381,7 +395,7 @@
   .reveal.in { opacity: 1; transform: none; }
 
   @media (prefers-reduced-motion: reduce) {
-    .glow, .pushnote, .demo-hint .pulse, .grad-text, .fchip, .mtrack { animation: none !important; }
+    .glow, .pushnote, .demo-hint .pulse, .grad-text, .fchip, .mtrack, .pin-glow, .pin-orb, .phone-fit.float { animation: none !important; }
     .view.on > * { animation: none !important; }
     .reveal { opacity: 1; transform: none; transition: none; }
     html { scroll-behavior: auto; }
@@ -541,11 +555,13 @@
 <!-- ===================== PINNED PRODUCT DEMO ===================== -->
 <section class="pinwrap" id="loop">
   <div class="pin-stage">
+    <div class="pin-glow"></div>
+    <span class="pin-orb o1"></span><span class="pin-orb o2"></span><span class="pin-orb o3"></span><span class="pin-orb o4"></span>
     <div class="pin-cap" id="pinCap">
       <span class="eyebrow" id="capK">The patient loop · 01</span>
       <h3 id="capT">A branded home screen that feels like yours</h3>
     </div>
-    <div class="phone-fit"><div class="phone" id="phone2">
+    <div class="phone-fit float"><div class="phone" id="phone2">
       <span class="pbtn v1"></span><span class="pbtn v2"></span>
       <div class="screen">
         <div class="island"></div>
@@ -815,6 +831,17 @@
     var view = root.querySelector('.view[data-screen="'+name+'"]'); if(!view) return;
     view.querySelectorAll('[data-count]').forEach(function(el){ countTo(el, +el.getAttribute('data-count'), {from:(+el.getAttribute('data-from')||0), prefix:el.getAttribute('data-prefix')||'', dur:850}); });
     view.querySelectorAll('[data-fill]').forEach(function(el){ el.style.width='0'; setTimeout(function(){ el.style.width=el.getAttribute('data-fill')+'%'; },180); });
+    if(name==='rewards') sparkle(root);
+  }
+  function sparkle(root){
+    if(reduce) return;
+    var host = root.closest('.pin-stage') || root.closest('.stage'); if(!host) return;
+    for(var i=0;i<9;i++){ (function(){
+      var s=document.createElement('span'); s.className='spark'; s.style.left='50%'; s.style.top='44%';
+      host.appendChild(s);
+      var ang=Math.random()*6.283, dist=70+Math.random()*130, x=Math.cos(ang)*dist, y=Math.sin(ang)*dist-30;
+      s.animate([{transform:'translate(-50%,-50%) scale(0) rotate(0)',opacity:1},{transform:'translate(calc(-50% + '+x+'px),calc(-50% + '+y+'px)) scale(1) rotate('+(Math.random()*360)+'deg)',opacity:0}],{duration:760+Math.random()*520,easing:'cubic-bezier(.2,.6,.3,1)'}).onfinish=function(){ s.remove(); };
+    })(); }
   }
   var phone = document.getElementById('phone');
   var userInteracted = false;
