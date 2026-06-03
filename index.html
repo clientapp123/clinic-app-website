@@ -19,10 +19,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
 <style>
-  /* ============================================================
-     Clinic App — interactive demo landing page
-     Clean editorial layout · restrained pink→purple gradient
-     ============================================================ */
   :root {
     --ink: #0E0C12; --ink-2: #34303A; --muted: #76707E; --faint: #A8A2B0;
     --paper: #FFFFFF; --paper-2: #FAF9FC; --paper-3: #F3F0F8;
@@ -39,10 +35,13 @@
     --sh-lg: 0 40px 80px -30px rgba(40,20,60,0.36);
     --ease: cubic-bezier(0.22,1,0.36,1);
     --maxw: 1180px; --gutter: clamp(22px,5vw,68px);
+    --grid: #F1EEF7;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; scroll-padding-top: 88px; -webkit-text-size-adjust: 100%; }
-  body { font-family: var(--font-body); color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 17px; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body { font-family: var(--font-body); color: var(--ink); background: var(--paper); line-height: 1.6; font-size: 17px; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 96px 96px; background-position: center -1px; }
   ::selection { background: rgba(214,36,159,0.16); }
   *:focus-visible { outline: 2px solid var(--violet); outline-offset: 3px; border-radius: 4px; }
   .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
@@ -50,8 +49,11 @@
   h1,h2,h3,h4 { font-family: var(--font-display); font-weight: 800; line-height: 1.02; letter-spacing: -0.035em; text-wrap: balance; }
   .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
   .lead { color: var(--muted); font-size: 19px; text-wrap: pretty; }
-  .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .grad-text { background: var(--grad); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: sheen 9s ease-in-out infinite; }
+  @keyframes sheen { 0%,100%{ background-position: 0% 50%;} 50%{ background-position: 100% 50%;} }
   .kicker { display: block; margin-bottom: 18px; }
+
+  .progressbar { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--grad); z-index: 100; }
 
   .btn { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font-body); font-weight: 600; font-size: 16px; padding: 15px 26px; border-radius: 100px; cursor: pointer; border: 1px solid transparent; transition: transform .2s var(--ease), box-shadow .25s var(--ease); }
   .btn svg { width: 17px; height: 17px; }
@@ -71,7 +73,7 @@
   header.nav { position: sticky; top: 0; z-index: 60; border-bottom: 1px solid transparent; transition: background .3s var(--ease), border-color .3s var(--ease); }
   header.nav.scrolled { background: rgba(255,255,255,0.82); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); border-bottom-color: var(--line); }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 78px; }
-  .nav-links { display: flex; gap: 32px; }
+  .nav-links { display: flex; gap: 30px; }
   .nav-links a { font-size: 15px; color: var(--ink-2); font-weight: 500; position: relative; }
   .nav-links a::after { content: ""; position: absolute; left: 0; bottom: -6px; height: 2px; width: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease); }
   .nav-links a:hover::after { transform: scaleX(1); }
@@ -79,40 +81,40 @@
   .nav-cta .signin { font-size: 15px; font-weight: 500; }
 
   section { position: relative; }
-  .pad { padding: clamp(72px,10vw,140px) 0; }
+  .pad { padding: clamp(72px,10vw,134px) 0; }
   .rule { border-top: 1px solid var(--line); }
   .center { text-align: center; }
-  .sec-head { max-width: 620px; }
+  .sec-head { max-width: 640px; }
   .center .sec-head { margin: 0 auto; }
   .sec-head h2 { font-size: clamp(30px,4.2vw,52px); }
   .sec-head p { color: var(--muted); font-size: 19px; margin-top: 16px; }
 
   /* ===================== HERO + LIVE DEMO ===================== */
-  .hero { padding: clamp(40px,6vw,72px) 0 clamp(64px,8vw,110px); overflow: hidden; }
+  .hero { padding: clamp(40px,6vw,72px) 0 clamp(64px,8vw,108px); overflow: hidden; }
   .hero-grid { display: grid; grid-template-columns: 1.02fr 0.98fr; gap: clamp(32px,6vw,72px); align-items: center; }
   .hero h1 { font-size: clamp(42px,6vw,80px); letter-spacing: -0.04em; line-height: 0.98; }
   .hero .lead { margin-top: 24px; max-width: 30ch; }
   .hero-ctas { display: flex; align-items: center; gap: 22px; margin-top: 34px; flex-wrap: wrap; }
   .demo-hint { margin-top: 30px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); display: flex; align-items: center; gap: 9px; }
-  .demo-hint .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(214,36,159,0.5); animation: pulse 2s infinite; }
+  .demo-hint .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(214,36,159,0.5);} 70%{ box-shadow: 0 0 0 10px rgba(214,36,159,0);} 100%{ box-shadow:0 0 0 0 rgba(214,36,159,0);} }
 
   .stage { position: relative; display: flex; justify-content: center; perspective: 1500px; }
   .glow { position: absolute; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(255,77,157,0.30), rgba(155,43,224,0.22) 45%, transparent 70%); filter: blur(60px); z-index: 0; animation: floaty 11s ease-in-out infinite; }
   @keyframes floaty { 0%,100%{ transform: translateY(0) scale(1);} 50%{ transform: translateY(-22px) scale(1.06);} }
-  .phone { position: relative; z-index: 2; width: 300px; height: 608px; border-radius: 48px; background: linear-gradient(155deg,#2a2430,#0c0a0e 62%); padding: 11px; box-shadow: var(--sh-lg); transition: transform .3s var(--ease); transform-style: preserve-3d; }
+  .phone { position: relative; z-index: 2; width: 300px; height: 612px; border-radius: 48px; background: linear-gradient(155deg,#2a2430,#0c0a0e 62%); padding: 11px; box-shadow: var(--sh-lg); transition: transform .3s var(--ease); transform-style: preserve-3d; }
   .phone::after { content:""; position:absolute; inset:0; border-radius:48px; pointer-events:none; background: linear-gradient(125deg, rgba(255,255,255,0.16), transparent 32%); }
   .screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #fff; }
   .island { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 84px; height: 25px; background: #0c0a0e; border-radius: 100px; z-index: 30; }
   .statusbar { position: absolute; top: 0; left: 0; right: 0; height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; font-family: var(--font-mono); font-size: 12px; font-weight: 700; z-index: 22; }
   .statusbar svg { width: 15px; height: 15px; }
 
-  .navbar { position: absolute; bottom: 0; left: 0; right: 0; height: 62px; background: rgba(255,255,255,0.94); backdrop-filter: blur(8px); border-top: 1px solid var(--line); display: flex; z-index: 24; }
-  .navbar button { flex: 1; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; justify-content: center; color: var(--faint); font-family: var(--font-body); font-size: 9px; font-weight: 600; transition: color .25s; }
-  .navbar button svg { width: 20px; height: 20px; }
+  .navbar { position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: rgba(255,255,255,0.94); backdrop-filter: blur(8px); border-top: 1px solid var(--line); display: flex; z-index: 24; }
+  .navbar button { flex: 1; background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; justify-content: center; color: var(--faint); font-family: var(--font-body); font-size: 8.5px; font-weight: 600; transition: color .25s; }
+  .navbar button svg { width: 19px; height: 19px; }
   .navbar button.on { color: var(--accent); }
 
-  .views { position: absolute; top: 0; left: 0; right: 0; bottom: 62px; overflow: hidden; }
+  .views { position: absolute; top: 0; left: 0; right: 0; bottom: 60px; overflow: hidden; }
   .view { position: absolute; inset: 0; padding: 50px 16px 14px; overflow-y: auto; opacity: 0; transform: translateX(14px); transition: opacity .45s var(--ease), transform .45s var(--ease); pointer-events: none; }
   .view.on { opacity: 1; transform: none; pointer-events: auto; }
   .scr-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
@@ -133,8 +135,20 @@
   .tile .ts { font-size: 11px; color: var(--muted); }
   .tile .redeem { margin-left: auto; font-size: 10px; font-weight: 700; color: var(--accent); border: 1px solid var(--line-2); border-radius: 100px; padding: 5px 10px; cursor: pointer; }
   .warm { background: linear-gradient(140deg,#F4D9C6,#ECC8C9 55%,#DCC4DE); }
-  .shopimg { height: 132px; border-radius: 14px; margin-bottom: 12px; position: relative; }
+  .shopimg { height: 124px; border-radius: 14px; margin-bottom: 12px; position: relative; }
   .save-num { font-family: var(--font-display); font-weight: 800; font-size: 30px; color: var(--accent); }
+  /* offer card slide-in (home) */
+  .offercard { background: var(--ink); color: #fff; border-radius: 14px; padding: 12px 13px; margin-top: 10px; display: flex; align-items: center; gap: 10px; animation: offerLoop 9s var(--ease) infinite; }
+  .offercard .oi { width: 32px; height: 32px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; flex: 0 0 32px; }
+  .offercard .oi svg { width: 16px; height: 16px; color: #fff; }
+  .offercard .ot { font-size: 12px; font-weight: 700; }
+  .offercard .os { font-size: 10px; color: rgba(255,255,255,0.7); }
+  @keyframes offerLoop { 0%{ opacity:0; transform: translateX(40px);} 10%,46%{ opacity:1; transform:none;} 56%,100%{ opacity:0; transform: translateX(40px);} }
+  /* booking slots */
+  .slots { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; margin-top: 10px; }
+  .slot { border: 1px solid var(--line); border-radius: 10px; padding: 9px 4px; text-align: center; font-size: 11px; font-weight: 600; }
+  .slot.sel { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .bookbtn { width: 100%; margin-top: 12px; background: var(--grad); color: #fff; border: none; border-radius: 12px; padding: 12px; font-family: var(--font-body); font-weight: 700; font-size: 13px; }
 
   .pushnote { position: absolute; top: 52px; left: 12px; right: 12px; z-index: 28; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border: 1px solid var(--line); border-radius: 16px; padding: 11px 13px; display: flex; align-items: center; gap: 10px; box-shadow: 0 14px 30px -10px rgba(40,20,60,0.45); opacity: 0; transform: translateY(-16px); transition: opacity .4s var(--ease), transform .4s var(--ease); pointer-events: none; }
   .pushnote.show { opacity: 1; transform: none; }
@@ -143,18 +157,34 @@
   .pushnote b { font-size: 12px; display: block; }
   .pushnote span { font-size: 10.5px; color: var(--muted); }
 
-  .chip { position: absolute; z-index: 5; background: #fff; border: 1px solid var(--line); box-shadow: var(--sh); border-radius: 14px; padding: 10px 13px; }
-  .chip .ck { font-family: var(--font-mono); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-  .chip .cv { font-family: var(--font-display); font-weight: 800; font-size: 19px; letter-spacing: -0.02em; }
-  .chip .cv.grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .chip.c1 { top: 38px; left: -30px; }
-  .chip.c2 { bottom: 96px; right: -34px; }
+  /* floating feature chips (bob) */
+  .fchip { position: absolute; z-index: 5; background: #fff; border: 1px solid var(--line); box-shadow: var(--sh); border-radius: 100px; padding: 9px 14px 9px 10px; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; animation: bob 5s ease-in-out infinite; }
+  .fchip .d { width: 22px; height: 22px; border-radius: 7px; background: var(--grad-soft); color: var(--accent); display: grid; place-items: center; }
+  .fchip .d svg { width: 13px; height: 13px; }
+  @keyframes bob { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-9px);} }
+  .fc1 { top: 54px; left: -42px; animation-delay: 0s; }
+  .fc2 { top: 168px; right: -52px; animation-delay: .7s; }
+  .fc3 { bottom: 188px; left: -56px; animation-delay: 1.4s; }
+  .fc4 { bottom: 96px; right: -40px; animation-delay: 2.1s; }
+  .fc5 { top: 300px; left: -44px; animation-delay: 1s; }
+
+  /* ===================== INTEGRATIONS STRIP ===================== */
+  .integ { background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .integ-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(28px,5vw,64px); align-items: center; padding: clamp(40px,5vw,64px) 0; }
+  .integ h3 { font-size: clamp(22px,2.4vw,30px); letter-spacing: -0.03em; }
+  .integ p { color: var(--muted); font-size: 16px; margin-top: 12px; max-width: 42ch; }
+  .integ .scan { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-family: var(--font-mono); font-size: 12px; color: var(--accent); font-weight: 700; }
+  .marquee { overflow: hidden; -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .mtrack { display: flex; gap: 14px; width: max-content; animation: marquee 32s linear infinite; }
+  .marquee:hover .mtrack { animation-play-state: paused; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  .logo { flex: 0 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 100px; padding: 12px 20px; font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--ink-2); letter-spacing: -0.02em; white-space: nowrap; }
 
   /* ===================== SCROLLYTELLING JOURNEY ===================== */
   .journey { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px,6vw,80px); align-items: start; }
   .journey-sticky { position: sticky; top: 110px; display: flex; justify-content: center; }
   .journey-steps { display: flex; flex-direction: column; }
-  .jstep { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; padding: 20px 0; opacity: 0.4; transition: opacity .4s var(--ease); }
+  .jstep { min-height: 66vh; display: flex; flex-direction: column; justify-content: center; padding: 20px 0; opacity: 0.4; transition: opacity .4s var(--ease); }
   .jstep.active { opacity: 1; }
   .jstep .jn { font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 700; }
   .jstep h3 { font-size: clamp(26px,3vw,38px); margin: 14px 0 14px; letter-spacing: -0.03em; }
@@ -175,7 +205,8 @@
   .calc-out .mini { color: rgba(255,255,255,0.5); }
   .calc-out .mrr { font-family: var(--font-display); font-weight: 900; font-size: clamp(44px,6vw,68px); line-height: 1; margin: 8px 0; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .calc-out .ann { font-size: 14px; color: rgba(255,255,255,0.6); }
-  .bars { display: flex; align-items: flex-end; gap: 7px; height: 90px; margin-top: 22px; }
+  .calc-out .disc { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 14px; font-family: var(--font-mono); }
+  .bars { display: flex; align-items: flex-end; gap: 7px; height: 90px; margin-top: 18px; }
   .bars .bar { flex: 1; border-radius: 6px 6px 0 0; background: var(--grad); opacity: .9; transition: height .7s var(--ease); }
   .badge { position: absolute; top: 16px; right: 16px; background: var(--grad); color: #fff; font-size: 11px; font-weight: 700; padding: 6px 12px; border-radius: 100px; opacity: 0; transform: scale(.6); transition: opacity .4s var(--ease), transform .4s var(--ease); }
   .badge.show { opacity: 1; transform: scale(1); }
@@ -200,7 +231,7 @@
   .ba-panel.then li span { color: var(--faint); }
 
   /* ===================== FEATURE EDITORIAL ROWS ===================== */
-  .frow { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px,6vw,80px); align-items: center; padding: clamp(44px,6vw,88px) 0; border-top: 1px solid var(--line); }
+  .frow { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px,6vw,80px); align-items: center; padding: clamp(44px,6vw,84px) 0; border-top: 1px solid var(--line); }
   .frow:nth-child(even) .fmedia { order: -1; }
   .frow .fn { font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 700; }
   .frow h3 { font-size: clamp(26px,3.2vw,40px); margin: 14px 0 16px; letter-spacing: -0.035em; }
@@ -212,6 +243,31 @@
   .pB { background: linear-gradient(140deg,#EAD8C6,#E7C9CE 50%,#CFC3E4); }
   .pC { background: linear-gradient(140deg,#F4DCC4,#E9C4CF 55%,#D6C6E6); }
   .photo .cap { position: absolute; left: 14px; bottom: 12px; z-index: 2; font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: rgba(14,12,18,0.45); }
+
+  /* ===================== FOUNDERS ===================== */
+  .founders { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,4vw,48px); margin-top: 48px; }
+  .fcard { display: grid; grid-template-columns: 130px 1fr; gap: 24px; align-items: start; }
+  .fportrait { aspect-ratio: 4/5; border-radius: var(--r); overflow: hidden; position: relative; box-shadow: var(--sh); }
+  .fportrait .photo.pf1 { background: linear-gradient(150deg,#EAD2BF,#D7AFB4 55%,#B79AD0); }
+  .fportrait .photo.pf2 { background: linear-gradient(150deg,#E7D6C4,#D9B3C2 52%,#B49AD6); }
+  .fname { font-family: var(--font-display); font-weight: 800; font-size: 21px; letter-spacing: -0.02em; }
+  .frole { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-top: 5px; }
+  .floc { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .fquote { font-size: 16px; color: var(--ink-2); margin-top: 14px; line-height: 1.55; }
+
+  /* ===================== TIMELINE ===================== */
+  .tl-banner { background: var(--ink); color: #fff; border-radius: var(--r-lg); padding: clamp(22px,3vw,32px) clamp(24px,4vw,40px); margin-top: 44px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .tl-banner b { font-family: var(--font-display); font-size: clamp(18px,2.2vw,24px); letter-spacing: -0.02em; }
+  .tl-banner span { color: rgba(255,255,255,0.6); font-size: 15px; }
+  .timeline { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; margin-top: 36px; position: relative; }
+  .tstep { position: relative; }
+  .tstep .tweek { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .tstep .tic { width: 46px; height: 46px; border-radius: 13px; background: var(--grad-soft); color: var(--accent); display: grid; place-items: center; margin: 14px 0 16px; }
+  .tstep .tic svg { width: 22px; height: 22px; }
+  .tstep h4 { font-size: 19px; letter-spacing: -0.02em; }
+  .tstep p { color: var(--muted); font-size: 14.5px; margin-top: 8px; }
+  .tstep::after { content: ""; position: absolute; top: 60px; left: calc(100% - 12px); width: 24px; height: 2px; background: var(--line-2); }
+  .tstep:last-child::after { display: none; }
 
   .bleed { position: relative; min-height: clamp(360px,52vw,560px); display: grid; place-items: center; text-align: center; overflow: hidden; }
   .bleed .photo { background: linear-gradient(150deg,#E8C9B4,#D9A9AE 42%,#B98FC4 78%,#6E4E97); }
@@ -259,23 +315,28 @@
   .reveal.in { opacity: 1; transform: none; }
 
   @media (prefers-reduced-motion: reduce) {
-    .glow, .pushnote, .demo-hint .pulse { animation: none !important; }
+    .glow, .pushnote, .demo-hint .pulse, .grad-text, .fchip, .offercard, .mtrack { animation: none !important; }
+    .offercard { opacity: 1; transform: none; }
     .reveal { opacity: 1; transform: none; transition: none; }
     .phone { transform: none !important; }
     html { scroll-behavior: auto; }
   }
   @media (max-width: 940px) {
     .nav-links { display: none; }
-    .hero-grid, .journey, .calc, .frow, .mem { grid-template-columns: 1fr; }
+    .hero-grid, .journey, .calc, .frow, .integ-grid, .founders, .fcard { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: 1fr 1fr; }
+    .tstep::after { display: none; }
     .journey-sticky { position: static; order: -1; margin-bottom: 12px; }
     .jstep { min-height: 0; opacity: 1; padding: 24px 0; border-top: 1px solid var(--line); }
     .frow:nth-child(even) .fmedia { order: 0; }
-    .chip.c1 { left: -8px; } .chip.c2 { right: -8px; }
+    .fchip { display: none; }
+    .fcard { grid-template-columns: 110px 1fr; gap: 18px; }
   }
-  @media (max-width: 560px) { body { font-size: 16px; } .chip { display: none; } }
+  @media (max-width: 560px) { body { font-size: 16px; } .timeline { grid-template-columns: 1fr; } .stage { transform: scale(0.96); } }
 </style>
 </head>
 <body>
+<div class="progressbar" id="progress"></div>
 
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
@@ -283,7 +344,7 @@
     <nav class="nav-links">
       <a href="#demo">Live demo</a>
       <a href="#revenue">Revenue</a>
-      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-cta"><a href="#book" class="signin">Sign in</a><a href="#book" class="btn btn-ink">Book a demo</a></div>
@@ -298,13 +359,16 @@
       <h1>Your patients already trust you. <span class="grad-text">Bring them back every month.</span></h1>
       <p class="lead">Your clinic's own branded app — memberships, rewards and booking. This is the real thing, not a screenshot: tap through it.</p>
       <div class="hero-ctas"><a href="#book" class="btn btn-ink" data-magnetic>Book a demo</a><a href="#revenue" class="tlink">See the revenue math ↓</a></div>
-      <div class="demo-hint"><span class="pulse"></span> Live demo — tap the screens or watch it play</div>
+      <div class="demo-hint"><span class="pulse"></span> Live demo — tap the 4 screens or watch it play</div>
     </div>
 
     <div class="stage">
       <div class="glow"></div>
-      <div class="chip c1" data-par="20"><div class="ck">Points earned</div><div class="cv grad" data-count="1145">0</div></div>
-      <div class="chip c2" data-par="-26"><div class="ck">Saved this year</div><div class="cv" data-count="612" data-prefix="$">$0</div></div>
+      <div class="fchip fc1" data-par="18"><span class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>Memberships</div>
+      <div class="fchip fc2" data-par="-22"><span class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/></svg></span>Push offers</div>
+      <div class="fchip fc3" data-par="20"><span class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg></span>Loyalty points</div>
+      <div class="fchip fc4" data-par="-18"><span class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>Booking</div>
+      <div class="fchip fc5" data-par="16"><span class="d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></span>Referrals</div>
 
       <div class="phone" id="phone" data-tilt>
         <div class="screen">
@@ -314,34 +378,46 @@
           <div class="pushnote" id="pushnote"><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/></svg></span><div><b id="pushTitle">You earned 120 points</b><span id="pushBody">Aurora Skin · just now</span></div></div>
 
           <div class="views">
+            <!-- HOME -->
             <div class="view on" data-screen="home">
               <div class="scr-h"><span class="applogo"></span><span class="mini">Aurora Skin</span></div>
               <div class="pcard">
                 <div class="row"><span class="mini" style="color:rgba(255,255,255,.85)">Hi Mia · Gold member</span><span class="pill pill-on">★ Gold</span></div>
                 <div class="big"><span data-points>1,145</span> <span style="font-size:13px;font-weight:600;opacity:.8">pts</span></div>
-                <div class="mini" style="color:rgba(255,255,255,.85);margin-top:6px"><span data-togo>160</span> pts to your next reward</div>
+                <div class="mini" style="color:rgba(255,255,255,.85);margin-top:6px">160 pts to your next reward</div>
                 <div class="prog"><i data-prog="88"></i></div>
               </div>
-              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 8h18M12 8v13"/></svg></span><div><div class="tt">🎉 Birthday gift unlocked</div><div class="ts">$25 Glow credit · 14 days left</div></div></div>
-              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10z"/></svg></span><div><div class="tt">20% off your next HydraFacial</div><div class="ts">It's been 6 weeks since your visit</div></div></div>
+              <div class="offercard"><span class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10z"/></svg></span><div><div class="ot">Worth your attention</div><div class="os">20% off your next HydraFacial</div></div></div>
+              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 8h18M12 8v13"/></svg></span><div><div class="tt">🎉 Birthday gift unlocked</div><div class="ts">A$25 Glow credit · 14 days left</div></div></div>
             </div>
+            <!-- REWARDS -->
             <div class="view" data-screen="rewards">
               <div class="scr-h"><span class="ttl">Rewards</span><span class="mini">1,145 pts</span></div>
               <div class="pcard">
                 <div class="mini" style="color:rgba(255,255,255,.85)">Glow credit</div>
-                <div class="big">$25.00</div>
+                <div class="big">A$25.00</div>
                 <div class="mini" style="color:rgba(255,255,255,.85);margin-top:4px">Gold tier · earning 2× points</div>
               </div>
               <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg></span><div><div class="tt">Free brow shape</div><div class="ts">500 pts</div></div><span class="redeem" data-redeem>Redeem</span></div>
-              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></span><div><div class="tt">Refer a friend</div><div class="ts">You both get $20</div></div><span class="redeem">Share</span></div>
+              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></span><div><div class="tt">Refer a friend</div><div class="ts">You both get A$20</div></div><span class="redeem">Share</span></div>
             </div>
+            <!-- SHOP / MEMBERSHIP -->
             <div class="view" data-screen="shop">
               <div class="scr-h"><span class="ttl">Aurora+</span><span class="mini">Membership</span></div>
               <div class="shopimg warm"></div>
               <div class="mini" style="color:var(--accent)">The membership that pays for itself</div>
               <div style="font-family:var(--font-display);font-weight:800;font-size:17px;margin:5px 0 4px;letter-spacing:-.02em">Saved this year</div>
-              <div class="save-num"><span data-save>$612</span></div>
+              <div class="save-num"><span data-save>A$612</span></div>
               <div class="tile" style="margin-top:14px"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="tt">1 facial credit / month</div><div class="ts">+ 15% off all skin treatments</div></div></div>
+            </div>
+            <!-- BOOK -->
+            <div class="view" data-screen="book">
+              <div class="scr-h"><span class="ttl">Book</span><span class="mini">Aurora Skin</span></div>
+              <div class="tile" style="margin-top:0"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><div class="tt">Signature HydraFacial</div><div class="ts">60 min · A$25 reward attached</div></div></div>
+              <div class="mini" style="margin:14px 0 0">Thursday 12 June</div>
+              <div class="slots"><div class="slot">9:30</div><div class="slot sel">11:00</div><div class="slot">1:30</div><div class="slot">2:45</div><div class="slot">4:00</div><div class="slot">5:15</div></div>
+              <button class="bookbtn">Confirm booking</button>
+              <div class="mini" style="text-align:center;margin-top:10px">Syncs to your existing calendar</div>
             </div>
           </div>
 
@@ -349,6 +425,7 @@
             <button class="on" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>Home</button>
             <button data-go="rewards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg>Rewards</button>
             <button data-go="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>Shop</button>
+            <button data-go="book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Book</button>
           </div>
         </div>
       </div>
@@ -356,8 +433,25 @@
   </div>
 </section>
 
+<!-- ===================== INTEGRATIONS STRIP ===================== -->
+<section class="integ">
+  <div class="wrap integ-grid">
+    <div>
+      <h3>Keep the tools you already use.</h3>
+      <p>Your booking system, payments and reviews stay exactly as they are. Patients just scan a barcode — your front desk learns nothing new.</p>
+      <span class="scan"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5v14M7 5v14M11 5v14M15 5v14M19 5v14"/></svg> Scan &amp; go</span>
+    </div>
+    <div class="marquee">
+      <div class="mtrack" id="mtrack">
+        <span class="logo">Stripe</span><span class="logo">Klarna</span><span class="logo">Afterpay</span><span class="logo">Square</span><span class="logo">Cliniko</span><span class="logo">Calendly</span><span class="logo">Google Reviews</span><span class="logo">Apple Pay</span>
+        <span class="logo">Stripe</span><span class="logo">Klarna</span><span class="logo">Afterpay</span><span class="logo">Square</span><span class="logo">Cliniko</span><span class="logo">Calendly</span><span class="logo">Google Reviews</span><span class="logo">Apple Pay</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== SCROLLYTELLING JOURNEY ===================== -->
-<section class="pad rule">
+<section class="pad">
   <div class="wrap">
     <div class="sec-head" style="margin-bottom:20px"><span class="eyebrow kicker">The patient loop</span><h2>One visit becomes a habit.</h2></div>
     <div class="journey">
@@ -365,6 +459,7 @@
         <div class="jstep active" data-screen="home"><div class="jn">01 — They arrive</div><h3>A branded home screen that feels like yours</h3><p>Patients open your app to points, perks and their next visit — not a generic booking form. It feels like a relationship, not a transaction.</p></div>
         <div class="jstep" data-screen="rewards"><div class="jn">02 — They're rewarded</div><h3>Every visit earns something back</h3><p>Points climb, rewards unlock, referrals are one tap away. The progress bar pulls them toward the next reward — and the next booking.</p></div>
         <div class="jstep" data-screen="shop"><div class="jn">03 — They commit</div><h3>Membership that obviously pays for itself</h3><p>When the savings are visible, joining is easy. That's recurring revenue for you and a better routine for them.</p></div>
+        <div class="jstep" data-screen="book"><div class="jn">04 — They rebook</div><h3>The next visit is one tap away</h3><p>Booking syncs with the system you already use, with their reward attached automatically. Fewer gaps in your diary.</p></div>
       </div>
       <div class="journey-sticky">
         <div class="phone" id="phone2" data-tilt style="transform:none">
@@ -386,16 +481,17 @@
     <div class="calc">
       <div>
         <h2>Drag the sliders.</h2>
-        <p class="lead">A rough model of the monthly recurring revenue memberships could add. Illustrative — your numbers depend on pricing, retention and volume.</p>
+        <p class="lead">A rough model of the monthly recurring revenue memberships could add. Illustrative only — your numbers depend on pricing, retention and volume.</p>
         <div class="ctrl"><label>Members <b><span id="mCount">120</span></b></label><input type="range" id="mSlider" min="20" max="500" value="120" step="10"></div>
-        <div class="ctrl"><label>Membership price / month <b>$<span id="pCount">99</span></b></label><input type="range" id="pSlider" min="39" max="249" value="99" step="10"></div>
+        <div class="ctrl"><label>Membership price / month <b>A$<span id="pCount">99</span></b></label><input type="range" id="pSlider" min="39" max="249" value="99" step="10"></div>
       </div>
       <div class="calc-out" id="calcOut">
-        <span class="badge" id="badge">🎉 Over $100k a year</span>
+        <span class="badge" id="badge">🎉 Over A$100k a year</span>
         <div class="mini">Estimated monthly recurring revenue</div>
-        <div class="mrr" id="mrr">$11,880</div>
-        <div class="ann"><span id="annual">$142,560</span> / year</div>
+        <div class="mrr" id="mrr">A$11,880</div>
+        <div class="ann"><span id="annual">A$142,560</span> / year</div>
         <div class="bars" id="bars"></div>
+        <div class="disc">Illustrative figures — not a guarantee of results.</div>
         <div class="confetti" id="confetti"></div>
       </div>
     </div>
@@ -403,7 +499,7 @@
 </section>
 
 <!-- ===================== BEFORE / AFTER TOGGLE ===================== -->
-<section class="pad rule">
+<section class="pad">
   <div class="wrap">
     <div class="sec-head center" style="margin-bottom:34px"><span class="eyebrow kicker">Feel the shift</span><h2>Today vs from launch day.</h2></div>
     <div class="ba">
@@ -453,11 +549,75 @@
   </div>
 </section>
 
+<!-- ===================== FOUNDERS ===================== -->
+<section class="pad rule" id="founders">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow kicker">Who's behind it</span><h2>Built by people who actually understand clinics.</h2><p>Not a faceless SaaS. Two founders — one builds the product, one has lived the beauty industry.</p></div>
+    <div class="founders">
+      <div class="fcard">
+        <div class="fportrait"><div class="photo pf1"></div></div>
+        <div>
+          <div class="fname">[Founder name]</div>
+          <div class="frole">Co-founder · Product &amp; build</div>
+          <div class="floc">Melbourne, AU</div>
+          <p class="fquote">"I wanted clinics to own the relationship with their patients — not rent it from a booking platform. So we built the app to live under your brand, and made the tech invisible."</p>
+        </div>
+      </div>
+      <div class="fcard">
+        <div class="fportrait"><div class="photo pf2"></div></div>
+        <div>
+          <div class="fname">[Founder name]</div>
+          <div class="frole">Co-founder · Industry &amp; clinics</div>
+          <div class="floc">Sydney, AU</div>
+          <p class="fquote">"I've worked in this industry for years. Great clinics lose patients not because of the work — because there's no easy way to stay in touch. This fixes exactly that."</p>
+        </div>
+      </div>
+    </div>
+    <p class="mini" style="margin-top:24px">Placeholder names, portraits and quotes — swap in real founder details before launch.</p>
+  </div>
+</section>
+
+<!-- ===================== HOW IT WORKS TIMELINE ===================== -->
+<section class="pad rule" id="how">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow kicker">How it works</span><h2>Live in about two weeks.</h2></div>
+    <div class="timeline">
+      <div class="tstep">
+        <div class="tweek">Week 1</div>
+        <div class="tic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5 1.5-1.5zM10 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/></svg></div>
+        <h4>Discovery call</h4>
+        <p>15 minutes. We map your treatments, memberships and goals. <b>You get:</b> a tailored plan.</p>
+      </div>
+      <div class="tstep">
+        <div class="tweek">Week 1</div>
+        <div class="tic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 22a10 10 0 1 1 0-20"/></svg></div>
+        <h4>Brand your app</h4>
+        <p>Your logo, colours and tone. <b>You get:</b> a preview to approve — no design skills needed.</p>
+      </div>
+      <div class="tstep">
+        <div class="tweek">Weeks 2–3</div>
+        <div class="tic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg></div>
+        <h4>Add memberships &amp; rewards</h4>
+        <p>We set up tiers, points and referrals. <b>You get:</b> a ready-to-launch loyalty system.</p>
+      </div>
+      <div class="tstep">
+        <div class="tweek">Weeks 3–4</div>
+        <div class="tic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v8M8 6l4-4 4 4M5 12v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8"/></svg></div>
+        <h4>Launch to patients</h4>
+        <p>We handle the app stores. <b>You get:</b> a live app + promo kit for your front desk.</p>
+      </div>
+    </div>
+    <div class="tl-banner"><b>We handle the build, the app stores and the setup.</b> <span>You run your clinic.</span></div>
+  </div>
+</section>
+
+<!-- ===================== FULL-BLEED CALM MOMENT ===================== -->
 <section class="bleed">
   <div class="photo"></div><div class="scrim"></div>
   <div class="bleed-in"><span class="eyebrow">Why now</span><h2>The clinics that win own the patient relationship.</h2><p>Ads keep getting more expensive. If every patient only books once, you have to keep buying attention forever. Keep them in your own app instead.</p></div>
 </section>
 
+<!-- ===================== MEMBERSHIPS ===================== -->
 <section class="pad" id="memberships">
   <div class="wrap">
     <div class="sec-head"><span class="eyebrow kicker">Examples you can launch</span><h2>Memberships built around your treatments.</h2></div>
@@ -469,12 +629,13 @@
   </div>
 </section>
 
+<!-- ===================== FAQ ===================== -->
 <section class="pad rule" id="faq">
   <div class="wrap">
     <div class="sec-head center"><span class="eyebrow kicker">FAQ</span><h2>Questions, answered.</h2></div>
     <div class="faq">
+      <div class="faq-item"><button class="faq-q">Do I have to change my booking system? <span class="pm"></span></button><div class="faq-a"><p>No. Keep your booking system, payments and reviews exactly as they are — we wire them in. Patients scan a barcode to use the app; your front desk learns nothing new.</p></div></div>
       <div class="faq-item"><button class="faq-q">Will my patients actually download the app? <span class="pm"></span></button><div class="faq-a"><p>They download once and keep it for rewards, bookings and offers — the value is ongoing. You also launch with ready-made promo materials for your front desk and socials.</p></div></div>
-      <div class="faq-item"><button class="faq-q">What if I already use a booking system? <span class="pm"></span></button><div class="faq-a"><p>Clinic App sits alongside it — we wire your booking links in so patients book the way you already work, and the app adds the loyalty and membership layer on top.</p></div></div>
       <div class="faq-item"><button class="faq-q">Is the app really branded as my clinic? <span class="pm"></span></button><div class="faq-a"><p>Yes — your name, logo and branding on the App Store and Google Play. Clinic App stays invisible to patients.</p></div></div>
       <div class="faq-item"><button class="faq-q">Do I need to be technical? <span class="pm"></span></button><div class="faq-a"><p>No. We build it and handle the app store submissions. You brand it, set up memberships and rewards, and approve it before launch.</p></div></div>
       <div class="faq-item"><button class="faq-q">How long until it's live? <span class="pm"></span></button><div class="faq-a"><p>About two weeks from kickoff to launch, including app store submission.</p></div></div>
@@ -491,8 +652,8 @@
     <div class="foot-top">
       <div class="foot-brand"><a href="#" class="brand"><span class="bloom"></span> Clinic App</a><p>Your clinic's own branded loyalty, membership, rewards and booking app.</p></div>
       <div class="foot-cols">
-        <div class="foot-col"><h5>Product</h5><a href="#demo">Live demo</a><a href="#revenue">Revenue</a><a href="#features">Features</a><a href="#faq">FAQ</a></div>
-        <div class="foot-col"><h5>Company</h5><a href="#book">Book a demo</a><a href="#">About</a><a href="#">Contact</a></div>
+        <div class="foot-col"><h5>Product</h5><a href="#demo">Live demo</a><a href="#revenue">Revenue</a><a href="#how">How it works</a><a href="#faq">FAQ</a></div>
+        <div class="foot-col"><h5>Company</h5><a href="#founders">Founders</a><a href="#book">Book a demo</a><a href="#">Contact</a></div>
         <div class="foot-col"><h5>Legal</h5><a href="#">Privacy</a><a href="#">Terms</a></div>
       </div>
     </div>
@@ -505,8 +666,12 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia('(pointer:fine)').matches;
 
-  var nav = document.getElementById('nav');
-  addEventListener('scroll', function(){ nav.classList.toggle('scrolled', scrollY > 12); }, {passive:true});
+  var nav = document.getElementById('nav'), progress = document.getElementById('progress');
+  addEventListener('scroll', function(){
+    nav.classList.toggle('scrolled', scrollY > 12);
+    var h = document.documentElement.scrollHeight - innerHeight;
+    progress.style.width = (h>0 ? (scrollY/h)*100 : 0) + '%';
+  }, {passive:true});
 
   function countTo(el, to, opts){
     opts = opts || {};
@@ -535,19 +700,18 @@
   var heroSeen = false;
   function runHero(){
     if (heroSeen) return; heroSeen = true;
-    document.querySelectorAll('.chip [data-count]').forEach(function(el){ countTo(el, +el.getAttribute('data-count')); });
     var pts = phone.querySelector('[data-points]'); if(pts) countTo(pts, 1145, {from:1025});
     var prog = phone.querySelector('[data-prog]'); if(prog) setTimeout(function(){ prog.style.width = prog.getAttribute('data-prog')+'%'; }, 300);
-    var save = phone.querySelector('[data-save]'); if(save) countTo(save, 612, {prefix:'$'});
+    var save = phone.querySelector('[data-save]'); if(save) countTo(save, 612, {prefix:'A$'});
     setTimeout(function(){ pushNote('You earned 120 points','Aurora Skin · just now'); }, 1400);
   }
 
-  var tour = [ {s:'home',wait:3800}, {s:'rewards',wait:3600,note:['A member perk is waiting','Glow facial unlocked']}, {s:'shop',wait:3800,note:['Membership unlocked','Aurora+ · saving you $612/yr']} ];
+  var tour = [ {s:'home',wait:4200}, {s:'rewards',wait:3600,note:['A member perk is waiting','Glow facial unlocked']}, {s:'shop',wait:3600,note:['Membership unlocked','Aurora+ · saving you A$612/yr']}, {s:'book',wait:3800,note:['Booked!','Reward attached automatically']} ];
   var ti = 0, tourTimer;
   function tourStep(){ if (userInteracted || reduce) return; var step = tour[ti % tour.length]; setScreen(phone, step.s); if (step.note) pushNote(step.note[0], step.note[1]); ti++; tourTimer = setTimeout(tourStep, step.wait); }
 
   if ('IntersectionObserver' in window){
-    new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ runHero(); if(!reduce && !userInteracted){ clearTimeout(tourTimer); ti=0; tourTimer=setTimeout(tourStep, 2600); } } else { clearTimeout(tourTimer); } }); }, {threshold:0.4}).observe(phone);
+    new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ runHero(); if(!reduce && !userInteracted){ clearTimeout(tourTimer); ti=0; tourTimer=setTimeout(tourStep, 2800); } } else { clearTimeout(tourTimer); } }); }, {threshold:0.4}).observe(phone);
   } else { runHero(); }
 
   var steps = document.querySelectorAll('.jstep');
@@ -562,11 +726,11 @@
       badge=document.getElementById('badge'), calcOut=document.getElementById('calcOut'), confetti=document.getElementById('confetti');
   var BARN = 10; for(var i=0;i<BARN;i++){ var b=document.createElement('div'); b.className='bar'; b.style.height='6%'; bars.appendChild(b); }
   var barEls = bars.querySelectorAll('.bar'); var lastMrr = 0, celebrated = false;
-  function fmt(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+  function fmt(n){ return 'A$' + Math.round(n).toLocaleString('en-US'); }
   function calc(animateNum){
     var members=+mS.value, price=+pS.value, monthly=members*price, annual=monthly*12;
     mC.textContent=members; pC.textContent=price;
-    if(animateNum && !reduce){ countTo(mrr, monthly, {from:lastMrr, dur:500, prefix:'$'}); } else { mrr.textContent=fmt(monthly); }
+    if(animateNum && !reduce){ countTo(mrr, monthly, {from:lastMrr, dur:500, prefix:'A$'}); } else { mrr.textContent=fmt(monthly); }
     lastMrr = monthly; ann.textContent=fmt(annual);
     var max=500*249;
     barEls.forEach(function(bar,idx){ var growth=(idx+1)/BARN; bar.style.height = Math.max(6, Math.min(100, (monthly/max)*100*(0.4+growth))) + '%'; });
@@ -593,8 +757,7 @@
       el.addEventListener('pointermove', function(e){ var r=el.getBoundingClientRect(); var x=(e.clientX-r.left)/r.width-0.5, y=(e.clientY-r.top)/r.height-0.5; el.style.transform='perspective(900px) rotateY('+(x*7)+'deg) rotateX('+(-y*7)+'deg)'; el.style.transition='transform .08s linear'; });
       el.addEventListener('pointerleave', function(){ el.style.transform=''; el.style.transition='transform .5s var(--ease)'; });
     });
-    var chips=document.querySelectorAll('[data-par]');
-    var stageEl=document.querySelector('.stage');
+    var chips=document.querySelectorAll('[data-par]'), stageEl=document.querySelector('.stage');
     if(stageEl) stageEl.addEventListener('pointermove', function(e){ var r=this.getBoundingClientRect(); var x=(e.clientX-r.left)/r.width-0.5, y=(e.clientY-r.top)/r.height-0.5; chips.forEach(function(c){ var d=+c.getAttribute('data-par'); c.style.transform='translate('+(x*d)+'px,'+(y*d)+'px)'; }); });
     document.querySelectorAll('[data-magnetic]').forEach(function(el){
       el.addEventListener('pointermove', function(e){ var r=el.getBoundingClientRect(); el.style.transform='translate('+((e.clientX-r.left-r.width/2)*0.25)+'px,'+((e.clientY-r.top-r.height/2)*0.35)+'px)'; });
@@ -603,7 +766,7 @@
   }
 
   if(!reduce && 'IntersectionObserver' in window){
-    var rEls=document.querySelectorAll('.hero-left>*, .sec-head, .frow, .mem-row, .ba, .calc, .faq-item, .bleed-in');
+    var rEls=document.querySelectorAll('.hero-left>*, .sec-head, .frow, .mem-row, .ba, .calc, .faq-item, .bleed-in, .integ-grid>*, .fcard, .tstep, .tl-banner');
     var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:0.12});
     rEls.forEach(function(el,i){ el.classList.add('reveal'); el.style.transitionDelay=((i%4)*60)+'ms'; io.observe(el); });
   }
