@@ -851,7 +851,7 @@
     if(reduce) return;
     var total = heroSec.offsetHeight - window.innerHeight;
     var p = total > 0 ? Math.min(Math.max(-heroSec.getBoundingClientRect().top / total, 0), 1) : 0;
-    phoneFit.style.transform = 'scale(' + (1 + p * 0.95).toFixed(3) + ')';
+    phoneFit.style.transform = 'scale(' + (1 + p * 0.45).toFixed(3) + ')';
     var fade = Math.max(0, 1 - p * 2.4);
     if (pinCap) pinCap.style.opacity = fade;
     if (dotsEl) dotsEl.style.opacity = fade;
