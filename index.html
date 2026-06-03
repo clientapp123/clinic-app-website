@@ -115,7 +115,7 @@
   .navbar button.on { color: var(--accent); }
 
   .views { position: absolute; top: 0; left: 0; right: 0; bottom: 60px; overflow: hidden; }
-  .view { position: absolute; inset: 0; padding: 50px 16px 14px; overflow-y: auto; opacity: 0; transform: translateX(14px); transition: opacity .45s var(--ease), transform .45s var(--ease); pointer-events: none; }
+  .view { position: absolute; inset: 0; padding: 50px 16px 14px; overflow-y: auto; opacity: 0; transform: translateY(16px) scale(0.985); transition: opacity .5s var(--ease), transform .5s var(--ease); pointer-events: none; }
   .view.on { opacity: 1; transform: none; pointer-events: auto; }
   .scr-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .scr-h .ttl { font-family: var(--font-display); font-weight: 800; font-size: 19px; letter-spacing: -0.02em; }
@@ -138,12 +138,12 @@
   .shopimg { height: 124px; border-radius: 14px; margin-bottom: 12px; position: relative; }
   .save-num { font-family: var(--font-display); font-weight: 800; font-size: 30px; color: var(--accent); }
   /* offer card slide-in (home) */
-  .offercard { background: var(--ink); color: #fff; border-radius: 14px; padding: 12px 13px; margin-top: 10px; display: flex; align-items: center; gap: 10px; animation: offerLoop 9s var(--ease) infinite; }
+  .offercard { background: var(--ink); color: #fff; border-radius: 14px; padding: 12px 13px; margin-top: 10px; display: flex; align-items: center; gap: 10px; animation: offerIn .65s var(--ease) .3s both; }
   .offercard .oi { width: 32px; height: 32px; border-radius: 9px; background: var(--grad); display: grid; place-items: center; flex: 0 0 32px; }
   .offercard .oi svg { width: 16px; height: 16px; color: #fff; }
   .offercard .ot { font-size: 12px; font-weight: 700; }
   .offercard .os { font-size: 10px; color: rgba(255,255,255,0.7); }
-  @keyframes offerLoop { 0%{ opacity:0; transform: translateX(40px);} 10%,46%{ opacity:1; transform:none;} 56%,100%{ opacity:0; transform: translateX(40px);} }
+  @keyframes offerIn { 0%{ opacity:0; transform: translateX(30px);} 100%{ opacity:1; transform:none;} }
   /* booking slots */
   .slots { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; margin-top: 10px; }
   .slot { border: 1px solid var(--line); border-radius: 10px; padding: 9px 4px; text-align: center; font-size: 11px; font-weight: 600; }
@@ -405,7 +405,6 @@
               <div class="offercard"><span class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10z"/></svg></span><div><div class="ot">Worth your attention</div><div class="os">20% off your next HydraFacial</div></div></div>
               <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 8h18M12 8v13"/></svg></span><div><div class="tt">🎉 Birthday gift unlocked</div><div class="ts">A$25 Glow credit · 14 days left</div></div></div>
               <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><div><div class="tt">Book your next visit</div><div class="ts">Your reward attaches automatically</div></div><span class="redeem">Book</span></div>
-              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.2 6.5L21 12l-6.8 2.2L12 22l-2.2-7.8L3 12l6.8-1.5z"/></svg></span><div><div class="tt">2× points this week</div><div class="ts">On all skin treatments</div></div></div>
             </div>
             <!-- REWARDS -->
             <div class="view" data-screen="rewards">
@@ -418,7 +417,6 @@
               <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg></span><div><div class="tt">Free brow shape</div><div class="ts">500 pts</div></div><span class="redeem" data-redeem>Redeem</span></div>
               <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></span><div><div class="tt">Refer a friend</div><div class="ts">You both get A$20</div></div><span class="redeem">Share</span></div>
               <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><div><div class="tt">A$50 off a treatment course</div><div class="ts">1,500 pts · keep going</div></div></div>
-              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.2 6.5L21 12l-6.8 2.2L12 22l-2.2-7.8L3 12l6.8-1.5z"/></svg></span><div><div class="tt">Leave a review</div><div class="ts">Earn 100 pts</div></div><span class="redeem">Open</span></div>
             </div>
             <!-- SHOP / MEMBERSHIP -->
             <div class="view" data-screen="shop">
@@ -428,7 +426,6 @@
               <div style="font-family:var(--font-display);font-weight:800;font-size:17px;margin:5px 0 4px;letter-spacing:-.02em">Saved this year</div>
               <div class="save-num"><span data-save>A$612</span></div>
               <div class="tile" style="margin-top:14px"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="tt">1 facial credit / month</div><div class="ts">+ 15% off all skin treatments</div></div></div>
-              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="tt">Priority booking + member events</div><div class="ts">Exclusive to Aurora+</div></div></div>
               <button class="bookbtn" style="margin-top:12px">Join Aurora+</button>
             </div>
             <!-- BOOK -->
@@ -715,6 +712,18 @@
   function setScreen(root, name){
     root.querySelectorAll('.view').forEach(function(v){ v.classList.toggle('on', v.getAttribute('data-screen')===name); });
     root.querySelectorAll('.navbar button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-go')===name); });
+    playScreen(root, name);
+  }
+  function playScreen(root, name){
+    if(reduce) return;
+    var view = root.querySelector('.view[data-screen="'+name+'"]'); if(!view) return;
+    if(name==='home'){
+      var oc=view.querySelector('.offercard'); if(oc){ oc.style.animation='none'; void oc.offsetWidth; oc.style.animation=''; }
+      var pts=view.querySelector('[data-points]'); if(pts) countTo(pts, 1145, {from:1025, dur:900});
+      var pr=view.querySelector('[data-prog]'); if(pr){ pr.style.width='0'; setTimeout(function(){ pr.style.width=(pr.getAttribute('data-prog')||88)+'%'; },140); }
+    } else if(name==='shop'){
+      var sv=view.querySelector('[data-save]'); if(sv) countTo(sv, 612, {from:0, prefix:'A$', dur:900});
+    }
   }
   var phone = document.getElementById('phone');
   var userInteracted = false;
