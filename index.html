@@ -90,7 +90,7 @@
   .sec-head p { color: var(--muted); font-size: 19px; margin-top: 16px; }
 
   /* ===================== HERO + LIVE DEMO ===================== */
-  .hero { padding: clamp(28px,4vw,56px) 0 clamp(44px,6vw,84px); position: relative; }
+  .hero { padding: clamp(28px,4vw,56px) 0 clamp(44px,6vw,84px); position: relative; overflow-x: clip; }
   .hero-grid { display: grid; grid-template-columns: 1.04fr 0.96fr; gap: clamp(28px,5vw,60px); align-items: center; }
   .hero-left { max-width: 600px; }
   .hero h1 { font-size: clamp(38px,5.2vw,74px); letter-spacing: -0.04em; line-height: 0.98; margin-top: 10px; text-wrap: balance; }
@@ -104,16 +104,16 @@
   .hero-right { position: relative; min-height: 580px; display: flex; align-items: center; justify-content: center; }
   .halo { position: absolute; width: 82%; height: 82%; border-radius: 50%; background: radial-gradient(circle, rgba(255,77,157,0.22), rgba(155,43,224,0.16) 46%, transparent 70%); filter: blur(72px); z-index: 0; animation: floaty 12s ease-in-out infinite; }
   .hero-right .phone-fit { z-index: 2; transform: perspective(1700px) rotateY(-9deg) rotateX(3deg); }
-  .fcard { position: absolute; z-index: 3; background: rgba(255,255,255,0.94); backdrop-filter: blur(6px); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--sh); padding: 13px 14px; width: 166px; animation: bob 6s ease-in-out infinite; }
+  .fcard { position: absolute; z-index: 3; background: rgba(255,255,255,0.94); backdrop-filter: blur(6px); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--sh); padding: 13px 14px; width: 150px; animation: bob 6s ease-in-out infinite; }
   .fcard .fc-i { width: 34px; height: 34px; border-radius: 10px; background: var(--grad-soft); color: var(--accent); display: grid; place-items: center; margin-bottom: 9px; }
   .fcard .fc-i svg { width: 17px; height: 17px; }
   .fcard b { font-size: 13.5px; display: block; letter-spacing: -0.01em; }
   .fcard span { font-size: 11.5px; color: var(--muted); display: block; margin-top: 2px; line-height: 1.35; }
-  .fc-ml { top: 22%; left: -4%; animation-delay: 0s; }
-  .fc-tr { top: 12%; right: -3%; animation-delay: .8s; }
-  .fc-bl { bottom: 24%; left: -3%; animation-delay: 1.6s; }
-  .fc-mr { top: 50%; right: -5%; animation-delay: 2.2s; }
-  .fc-rev { bottom: 3%; right: 0; width: 184px; animation-delay: 1.2s; }
+  .fc-ml { top: 12%; left: -11%; animation-delay: 0s; }
+  .fc-tr { top: 5%; right: -10%; animation-delay: .8s; }
+  .fc-bl { bottom: 16%; left: -9%; animation-delay: 1.6s; }
+  .fc-mr { top: 48%; right: -12%; animation-delay: 2.2s; }
+  .fc-rev { bottom: 1%; right: -7%; width: 166px; animation-delay: 1.2s; }
   .fc-rev .fc-rk { font-size: 11px; color: var(--muted); }
   .fc-rev .fc-rn { font-family: var(--font-display); font-weight: 800; font-size: 28px; display: block; margin: 1px 0; line-height: 1; }
   .fc-rev .fc-rs { font-size: 10px; color: var(--muted); display: block; }
@@ -380,7 +380,7 @@
 
   /* ===================== FOUNDERS ===================== */
   .founders { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,4vw,48px); margin-top: 48px; }
-  .fcard { display: grid; grid-template-columns: 130px 1fr; gap: 24px; align-items: start; }
+  .founders .fcard { display: grid; grid-template-columns: 130px 1fr; gap: 24px; align-items: start; }
   .fportrait { aspect-ratio: 4/5; border-radius: var(--r); overflow: hidden; position: relative; box-shadow: var(--sh); }
   .fportrait .photo.pf1 { background: linear-gradient(150deg,#EAD2BF,#D7AFB4 55%,#B79AD0); }
   .fportrait .photo.pf2 { background: linear-gradient(150deg,#E7D6C4,#D9B3C2 52%,#B49AD6); }
@@ -456,12 +456,12 @@
   }
   @media (max-width: 940px) {
     .nav-links { display: none; }
-    .hero-grid, .calc, .frow, .integ-grid, .founders, .fcard { grid-template-columns: 1fr; }
+    .hero-grid, .calc, .frow, .integ-grid, .founders, .founders .fcard { grid-template-columns: 1fr; }
     .timeline { grid-template-columns: 1fr 1fr; }
     .tstep::after { display: none; }
     .frow:nth-child(even) .fmedia { order: 0; }
     .fchip { display: none; }
-    .fcard { grid-template-columns: 110px 1fr; gap: 18px; }
+    .founders .fcard { grid-template-columns: 110px 1fr; gap: 18px; }
   }
   @media (max-width: 560px) {
     body { font-size: 16px; }
@@ -826,7 +826,7 @@
     } else {
       var hr = phone.closest('.hero-right');
       var hw = hr ? hr.clientWidth : 340;
-      s = window.innerWidth > 940 ? Math.min(hw * 0.64 / 340, 1.0) : Math.min((Math.min(hw, window.innerWidth) - 36) / 340, 1.0);
+      s = window.innerWidth > 940 ? Math.min(hw * 0.55 / 340, 1.0) : Math.min((Math.min(hw, window.innerWidth) - 36) / 340, 1.0);
     }
     s = Math.max(0.5, s);
     phone.style.setProperty('--s', s);
