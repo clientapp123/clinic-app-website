@@ -177,7 +177,9 @@
   .pin-orb.o3 { width: 9px; height: 9px; background: var(--accent); left: 23%; bottom: 22%; animation: drift 10s ease-in-out infinite; }
   .pin-orb.o4 { width: 7px; height: 7px; background: var(--pink); right: 24%; bottom: 26%; animation: drift 12s ease-in-out infinite reverse; }
   @keyframes drift { 0%,100% { transform: translate(0,0); } 50% { transform: translate(16px,-22px); } }
-  .phone-fit.float { animation: phoneFloat 6s ease-in-out infinite; }
+  .phone-fit.float { animation: phoneFloat 6s ease-in-out infinite; will-change: transform; }
+  .shoptabs2 { display: flex; gap: 14px; font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .shoptabs2 .on { color: var(--ink); font-weight: 700; border-bottom: 2px solid var(--accent); padding-bottom: 5px; }
   @keyframes phoneFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
   .spark { position: absolute; width: 11px; height: 11px; z-index: 3; pointer-events: none; background: var(--grad); border-radius: 2px; box-shadow: 0 0 10px rgba(214,36,159,.5); }
   .statusbar { position: absolute; top: 0; left: 0; right: 0; height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; font-family: var(--font-mono); font-size: 12px; font-weight: 700; z-index: 22; }
@@ -189,7 +191,7 @@
   .navbar button.on { color: var(--accent); }
 
   .views { position: absolute; top: 0; left: 0; right: 0; bottom: 70px; overflow: hidden; }
-  .view { position: absolute; inset: 0; padding: 52px 16px 14px; overflow: hidden; opacity: 0; transition: opacity .4s var(--ease); pointer-events: none; }
+  .view { position: absolute; inset: 0; padding: 52px 16px 14px; overflow: hidden; opacity: 0; transition: opacity .5s var(--ease); pointer-events: none; will-change: opacity; }
   .view.on > * { animation: rise .5s var(--ease) both; }
   .view.on > *:nth-child(1){animation-delay:.04s} .view.on > *:nth-child(2){animation-delay:.10s} .view.on > *:nth-child(3){animation-delay:.16s} .view.on > *:nth-child(4){animation-delay:.22s} .view.on > *:nth-child(5){animation-delay:.28s} .view.on > *:nth-child(6){animation-delay:.34s}
   @keyframes rise { from { opacity:0; transform: translateY(16px);} to { opacity:1; transform:none;} }
@@ -482,11 +484,14 @@
                 <div class="pm2"><span>1 of 6 visits completed</span><b>17%</b></div>
                 <div class="barline"><i data-fill="17"></i></div>
                 <div class="rec">Recommended next: <b>HydraFacial</b></div>
+                <button class="bigbtn" style="margin-top:12px;padding:11px;font-size:13px">Book next visit</button>
               </div>
+              <div class="tile" style="margin-top:11px"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 8h18M12 8v13"/></svg></span><div><div class="tt">🎉 Birthday gift unlocked</div><div class="ts">A$25 Glow credit · 14 days left</div></div></div>
             </div>
             <!-- SHOP -->
             <div class="view" data-screen="shop">
               <div class="scr-h"><span class="ttl">Shop</span><span class="hicons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg></span></div>
+              <div class="shoptabs2"><span class="on">Browse</span><span>Aurora+</span><span>Treatments</span><span>Packages</span></div>
               <div class="shead">Most loved</div>
               <div class="prods">
                 <div class="prod"><div class="pimg imgph"><span class="badge2">★ Popular</span></div><div class="pbody"><div class="pn">HydraFacial</div><div class="pp">A$180</div><div class="pe">Earn 400 pts</div><button class="buy">Buy now</button></div></div>
@@ -509,6 +514,7 @@
               <div class="savepill"><span class="sp-i"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.5L21 12l-6.8 2.2L12 22l-2.2-7.8L3 12l6.8-1.5z"/></svg></span><span>You've saved <b>A$48</b> with Glow Cash this year</span></div>
               <div class="shead">Almost yours</div>
               <div class="reward-row"><div class="rimg imgph"></div><div style="flex:1"><div class="rn">Free brow shape</div><div class="rp">500 pts · 340 to go</div><div class="barline" style="margin-top:6px"><i data-fill="68"></i></div></div></div>
+              <div class="reward-row"><div class="rimg imgph2"></div><div style="flex:1"><div class="rn">15min Emsculpt trial</div><div class="rp">350 pts · or bank A$15</div><div class="barline" style="margin-top:6px"><i data-fill="34"></i></div></div></div>
             </div>
             <!-- BOOK -->
             <div class="view" data-screen="book">
@@ -814,7 +820,8 @@
     var pre = el.getAttribute('data-prefix') || opts.prefix || '';
     if (reduce){ el.textContent = pre + Math.round(to).toLocaleString('en-US'); return; }
     var from = opts.from || 0, dur = opts.dur || 1100, start = null;
-    function step(t){ if(!start) start = t; var p = Math.min((t-start)/dur,1); var e = 1-Math.pow(1-p,3); el.textContent = pre + Math.round(from+(to-from)*e).toLocaleString('en-US'); if(p<1) requestAnimationFrame(step); }
+    el._ct = (el._ct || 0) + 1; var tok = el._ct;
+    function step(t){ if(el._ct !== tok) return; if(!start) start = t; var p = Math.min((t-start)/dur,1); var e = 1-Math.pow(1-p,3); el.textContent = pre + Math.round(from+(to-from)*e).toLocaleString('en-US'); if(p<1) requestAnimationFrame(step); }
     requestAnimationFrame(step);
   }
 
