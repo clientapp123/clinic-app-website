@@ -112,6 +112,60 @@
   .screen { position: relative; width: 100%; height: 100%; border-radius: 50px; overflow: hidden; background: #fff; }
   .island { position: absolute; top: 15px; left: 50%; transform: translateX(-50%); width: 100px; height: 31px; background: #050506; border-radius: 100px; z-index: 30; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05); }
   .home-ind { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 126px; height: 5px; border-radius: 100px; background: rgba(10,10,15,0.30); z-index: 27; }
+
+  /* real-app-style screen components (brand-recoloured) */
+  .scr-h .ttl { font-family: var(--font-display); font-weight: 800; font-size: 19px; letter-spacing: -0.025em; }
+  .hicons { display: flex; gap: 12px; color: var(--ink-2); }
+  .hicons svg { width: 17px; height: 17px; }
+  .shead { font-family: var(--font-display); font-weight: 800; font-size: 16px; letter-spacing: -0.02em; margin-top: 13px; }
+  .imgph { background: linear-gradient(140deg,#F4D9C6,#ECC8C9 50%,#DCC4DE); }
+  .imgph2 { background: linear-gradient(140deg,#EAD8C6,#E7C9CE 55%,#CFC3E4); }
+  .scr-img { position: relative; height: 162px; border-radius: 16px; overflow: hidden; }
+  .scr-img .ov { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 38%, rgba(14,10,18,.58)); }
+  .scr-img .wt { position: absolute; left: 14px; bottom: 12px; color: #fff; z-index: 2; }
+  .scr-img .wt b { font-family: var(--font-display); font-size: 19px; display: block; letter-spacing: -0.02em; }
+  .scr-img .wt span { font-size: 11px; opacity: .92; }
+  .ptspill { position: absolute; top: 12px; right: 12px; z-index: 2; background: #fff; border-radius: 100px; padding: 6px 11px; display: flex; align-items: center; gap: 6px; box-shadow: var(--sh-sm); }
+  .ptspill b { color: var(--accent); font-size: 14px; font-family: var(--font-display); }
+  .ptspill span { font-size: 8.5px; color: var(--muted); font-family: var(--font-mono); letter-spacing: .06em; }
+  .statpills { display: flex; gap: 6px; margin-top: 10px; }
+  .statpills .sp { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 100px; padding: 8px 4px; text-align: center; font-size: 10px; font-weight: 600; color: var(--ink-2); }
+  .bigbtn { width: 100%; margin-top: 12px; background: var(--grad); color: #fff; border: none; border-radius: 100px; padding: 14px; font-family: var(--font-body); font-weight: 700; font-size: 14px; box-shadow: 0 8px 20px -8px rgba(155,43,224,.5); cursor: pointer; transition: transform .15s var(--ease); }
+  .bigbtn:active, .buy:active, .bookbtn:active, .slot:active { transform: scale(.97); }
+  .plan { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 14px; margin-top: 12px; }
+  .plan .pk { font-family: var(--font-mono); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .plan h4 { font-size: 15px; letter-spacing: -0.02em; margin-top: 5px; }
+  .plan .pm2 { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 11px; }
+  .plan .pm2 b { color: var(--accent); font-family: var(--font-display); }
+  .plan .rec { font-size: 11px; color: var(--ink-2); margin-top: 11px; }
+  .barline { height: 7px; border-radius: 100px; background: var(--line); overflow: hidden; margin-top: 7px; }
+  .barline i { display: block; height: 100%; width: 0; background: var(--grad); border-radius: 100px; transition: width 1s var(--ease); }
+  .prods { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 9px; }
+  .prod { background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .prod .pimg { height: 80px; position: relative; }
+  .prod .pimg .badge2 { position: absolute; top: 6px; left: 6px; background: #fff; font-size: 8px; font-weight: 700; padding: 3px 7px; border-radius: 100px; box-shadow: var(--sh-sm); }
+  .prod .pbody { padding: 9px 10px 11px; }
+  .prod .pn { font-size: 12px; font-weight: 700; }
+  .prod .pp { font-family: var(--font-display); font-weight: 800; font-size: 15px; margin-top: 1px; }
+  .prod .pe { font-size: 9.5px; color: var(--accent); font-weight: 600; margin-top: 2px; }
+  .prod .buy { margin-top: 8px; background: var(--grad); color: #fff; border: none; border-radius: 100px; padding: 7px; width: 100%; font-size: 10.5px; font-weight: 700; font-family: var(--font-body); cursor: pointer; transition: transform .15s var(--ease); }
+  .rwd-card { background: var(--grad); color: #fff; border-radius: 18px; padding: 16px; box-shadow: 0 14px 30px -12px rgba(155,43,224,.5); }
+  .rwd-card .rt { display: flex; justify-content: space-between; align-items: flex-start; }
+  .rwd-card .big2 { font-family: var(--font-display); font-weight: 800; font-size: 34px; line-height: 1; }
+  .rwd-card .lab { font-size: 9px; font-family: var(--font-mono); letter-spacing: .1em; opacity: .85; text-transform: uppercase; }
+  .barwhite { height: 6px; border-radius: 100px; background: rgba(255,255,255,.28); overflow: hidden; margin-top: 8px; }
+  .barwhite i { display: block; height: 100%; width: 0; background: #fff; transition: width 1s var(--ease); }
+  .savepill { background: var(--grad-soft); border-radius: 12px; padding: 11px 12px; margin-top: 11px; font-size: 11.5px; display: flex; align-items: center; gap: 8px; }
+  .savepill b { color: var(--accent); }
+  .savepill .sp-i { width: 24px; height: 24px; border-radius: 50%; background: #fff; display: grid; place-items: center; color: var(--accent); flex: 0 0 24px; }
+  .savepill .sp-i svg { width: 13px; height: 13px; }
+  .reward-row { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 10px; margin-top: 9px; display: flex; gap: 11px; align-items: center; }
+  .reward-row .rimg { width: 54px; height: 54px; border-radius: 11px; flex: 0 0 54px; }
+  .reward-row .rn { font-size: 12.5px; font-weight: 700; }
+  .reward-row .rp { font-size: 10px; color: var(--accent); font-weight: 600; margin-top: 1px; }
+  .navbar .scan { flex: 0 0 auto; color: var(--muted); }
+  .navbar .scan .fab { width: 46px; height: 46px; border-radius: 50%; background: var(--grad); display: grid; place-items: center; margin-top: -22px; box-shadow: 0 8px 18px -6px rgba(155,43,224,.6); }
+  .navbar .scan .fab svg { width: 20px; height: 20px; color: #fff; }
   .statusbar { position: absolute; top: 0; left: 0; right: 0; height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; font-family: var(--font-mono); font-size: 12px; font-weight: 700; z-index: 22; }
   .statusbar svg { width: 15px; height: 15px; }
 
@@ -121,7 +175,10 @@
   .navbar button.on { color: var(--accent); }
 
   .views { position: absolute; top: 0; left: 0; right: 0; bottom: 70px; overflow: hidden; }
-  .view { position: absolute; inset: 0; padding: 52px 17px 14px; overflow: hidden; opacity: 0; transform: translateY(16px) scale(0.985); transition: opacity .5s var(--ease), transform .5s var(--ease); pointer-events: none; }
+  .view { position: absolute; inset: 0; padding: 52px 16px 14px; overflow: hidden; opacity: 0; transition: opacity .4s var(--ease); pointer-events: none; }
+  .view.on > * { animation: rise .5s var(--ease) both; }
+  .view.on > *:nth-child(1){animation-delay:.04s} .view.on > *:nth-child(2){animation-delay:.10s} .view.on > *:nth-child(3){animation-delay:.16s} .view.on > *:nth-child(4){animation-delay:.22s} .view.on > *:nth-child(5){animation-delay:.28s} .view.on > *:nth-child(6){animation-delay:.34s}
+  @keyframes rise { from { opacity:0; transform: translateY(16px);} to { opacity:1; transform:none;} }
   .view.on { opacity: 1; transform: none; pointer-events: auto; }
   .scr-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
   .scr-h .ttl { font-family: var(--font-display); font-weight: 800; font-size: 19px; letter-spacing: -0.02em; }
@@ -324,10 +381,9 @@
   .reveal.in { opacity: 1; transform: none; }
 
   @media (prefers-reduced-motion: reduce) {
-    .glow, .pushnote, .demo-hint .pulse, .grad-text, .fchip, .offercard, .mtrack { animation: none !important; }
-    .offercard { opacity: 1; transform: none; }
+    .glow, .pushnote, .demo-hint .pulse, .grad-text, .fchip, .mtrack { animation: none !important; }
+    .view.on > * { animation: none !important; }
     .reveal { opacity: 1; transform: none; transition: none; }
-    .phone { transform: none !important; }
     html { scroll-behavior: auto; }
   }
   @media (max-width: 940px) {
@@ -398,42 +454,51 @@
           <div class="views">
             <!-- HOME -->
             <div class="view on" data-screen="home">
-              <div class="scr-h"><span class="applogo"></span><span class="mini">Aurora Skin</span></div>
-              <div class="pcard">
-                <div class="row"><span class="mini" style="color:rgba(255,255,255,.85)">Hi Mia · Gold member</span><span class="pill pill-on">★ Gold</span></div>
-                <div class="big"><span data-points>1,145</span> <span style="font-size:13px;font-weight:600;opacity:.8">pts</span></div>
-                <div class="mini" style="color:rgba(255,255,255,.85);margin-top:6px">160 pts to your next reward</div>
-                <div class="prog"><i data-prog="88"></i></div>
+              <div class="scr-h"><span class="ttl">Aurora Skin</span><span class="hicons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg></span></div>
+              <div class="scr-img imgph">
+                <div class="ov"></div>
+                <span class="ptspill"><b><span data-count="1145" data-from="1020">1,145</span></b><span>GOLD</span></span>
+                <div class="wt"><b>Welcome back, Mia</b><span>Doctor-led skin &amp; cosmetic care</span></div>
               </div>
-              <div class="offercard"><span class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10z"/></svg></span><div><div class="ot">Worth your attention</div><div class="os">20% off your next HydraFacial</div></div></div>
-              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 8h18M12 8v13"/></svg></span><div><div class="tt">🎉 Birthday gift unlocked</div><div class="ts">A$25 Glow credit · 14 days left</div></div></div>
-              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><div><div class="tt">Book your next visit</div><div class="ts">Your reward attaches automatically</div></div><span class="redeem">Book</span></div>
+              <div class="statpills"><span class="sp">Doctor-led</span><span class="sp">Est. 2018</span><span class="sp">7+ treatments</span></div>
+              <button class="bigbtn">Browse treatments</button>
+              <div class="plan">
+                <div class="pk">Your skin plan</div>
+                <h4>Month 1 of 6 · Hydration + collagen</h4>
+                <div class="pm2"><span>1 of 6 visits completed</span><b>17%</b></div>
+                <div class="barline"><i data-fill="17"></i></div>
+                <div class="rec">Recommended next: <b>HydraFacial</b></div>
+              </div>
+            </div>
+            <!-- SHOP -->
+            <div class="view" data-screen="shop">
+              <div class="scr-h"><span class="ttl">Shop</span><span class="hicons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg></span></div>
+              <div class="shead">Most loved</div>
+              <div class="prods">
+                <div class="prod"><div class="pimg imgph"><span class="badge2">★ Popular</span></div><div class="pbody"><div class="pn">HydraFacial</div><div class="pp">A$180</div><div class="pe">Earn 400 pts</div><button class="buy">Buy now</button></div></div>
+                <div class="prod"><div class="pimg imgph2"><span class="badge2">Member price</span></div><div class="pbody"><div class="pn">Coolsculpting</div><div class="pp">A$700</div><div class="pe">Earn 350 pts</div><button class="buy">Buy now</button></div></div>
+              </div>
+              <div class="shead">Buy again</div>
+              <div class="reward-row"><div class="rimg imgph2"></div><div style="flex:1"><div class="rn">Emsculpt Neo</div><div class="rp">From A$3,000 · Earn 3,000 pts</div></div></div>
             </div>
             <!-- REWARDS -->
             <div class="view" data-screen="rewards">
-              <div class="scr-h"><span class="ttl">Rewards</span><span class="mini">1,145 pts</span></div>
-              <div class="pcard">
-                <div class="mini" style="color:rgba(255,255,255,.85)">Glow credit</div>
-                <div class="big">A$25.00</div>
-                <div class="mini" style="color:rgba(255,255,255,.85);margin-top:4px">Gold tier · earning 2× points</div>
+              <div class="scr-h"><span class="ttl">Rewards</span><span class="hicons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg></span></div>
+              <div class="rwd-card">
+                <div class="rt">
+                  <div><div class="lab">Aurora Skin · Gold</div><div class="big2"><span data-count="1145" data-from="800">1,145</span></div><div class="lab" style="margin-top:3px">your points</div></div>
+                  <div style="text-align:right"><div class="lab">Glow cash</div><div class="big2" style="font-size:24px"><span data-count="48" data-prefix="A$">A$48</span></div></div>
+                </div>
+                <div class="lab" style="margin-top:13px">Next reward · 160 pts to Free brow shape</div>
+                <div class="barwhite"><i data-fill="88"></i></div>
               </div>
-              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg></span><div><div class="tt">Free brow shape</div><div class="ts">500 pts</div></div><span class="redeem" data-redeem>Redeem</span></div>
-              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></span><div><div class="tt">Refer a friend</div><div class="ts">You both get A$20</div></div><span class="redeem">Share</span></div>
-              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><div><div class="tt">A$50 off a treatment course</div><div class="ts">1,500 pts · keep going</div></div></div>
-            </div>
-            <!-- SHOP / MEMBERSHIP -->
-            <div class="view" data-screen="shop">
-              <div class="scr-h"><span class="ttl">Aurora+</span><span class="mini">Membership</span></div>
-              <div class="shopimg warm"></div>
-              <div class="mini" style="color:var(--accent)">The membership that pays for itself</div>
-              <div style="font-family:var(--font-display);font-weight:800;font-size:17px;margin:5px 0 4px;letter-spacing:-.02em">Saved this year</div>
-              <div class="save-num"><span data-save>A$612</span></div>
-              <div class="tile" style="margin-top:14px"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="tt">1 facial credit / month</div><div class="ts">+ 15% off all skin treatments</div></div></div>
-              <button class="bookbtn" style="margin-top:12px">Join Aurora+</button>
+              <div class="savepill"><span class="sp-i"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.2 6.5L21 12l-6.8 2.2L12 22l-2.2-7.8L3 12l6.8-1.5z"/></svg></span><span>You've saved <b>A$48</b> with Glow Cash this year</span></div>
+              <div class="shead">Almost yours</div>
+              <div class="reward-row"><div class="rimg imgph"></div><div style="flex:1"><div class="rn">Free brow shape</div><div class="rp">500 pts · 340 to go</div><div class="barline" style="margin-top:6px"><i data-fill="68"></i></div></div></div>
             </div>
             <!-- BOOK -->
             <div class="view" data-screen="book">
-              <div class="scr-h"><span class="ttl">Book</span><span class="mini">Aurora Skin</span></div>
+              <div class="scr-h"><span class="ttl">Book</span><span class="hicons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg></span></div>
               <div class="tile" style="margin-top:0"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><div class="tt">Signature HydraFacial</div><div class="ts">60 min · A$25 reward attached</div></div></div>
               <div class="mini" style="margin:14px 0 0">Thursday 12 June</div>
               <div class="slots"><div class="slot">9:30</div><div class="slot sel">11:00</div><div class="slot">1:30</div><div class="slot">2:45</div><div class="slot">4:00</div><div class="slot">5:15</div></div>
@@ -444,8 +509,9 @@
 
           <div class="navbar">
             <button class="on" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>Home</button>
-            <button data-go="rewards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg>Rewards</button>
             <button data-go="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>Shop</button>
+            <button class="scan"><span class="fab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2M4 12h16"/></svg></span>Scan</button>
+            <button data-go="rewards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7"/></svg>Rewards</button>
             <button data-go="book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Book</button>
           </div>
           <div class="home-ind"></div>
@@ -487,8 +553,9 @@
         <div class="views" id="views2"></div>
         <div class="navbar" id="navbar2">
           <button data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>Home</button>
-          <button data-go="rewards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg>Rewards</button>
           <button data-go="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>Shop</button>
+          <button class="scan"><span class="fab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2M4 12h16"/></svg></span>Scan</button>
+          <button data-go="rewards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7"/></svg>Rewards</button>
           <button data-go="book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Book</button>
         </div>
         <div class="home-ind"></div>
@@ -498,8 +565,8 @@
   </div>
   <div class="pin-steps">
     <div class="pin-step" data-screen="home" data-k="The patient loop · 01" data-t="A branded home screen that feels like yours"></div>
-    <div class="pin-step" data-screen="rewards" data-k="The patient loop · 02" data-t="Every visit earns something back"></div>
-    <div class="pin-step" data-screen="shop" data-k="The patient loop · 03" data-t="Membership that obviously pays for itself"></div>
+    <div class="pin-step" data-screen="shop" data-k="The patient loop · 02" data-t="Treatments and member pricing, in-app"></div>
+    <div class="pin-step" data-screen="rewards" data-k="The patient loop · 03" data-t="Points, perks and cash they can feel"></div>
     <div class="pin-step" data-screen="book" data-k="The patient loop · 04" data-t="The next visit is one tap away"></div>
   </div>
 </section>
@@ -746,13 +813,8 @@
   function playScreen(root, name){
     if(reduce) return;
     var view = root.querySelector('.view[data-screen="'+name+'"]'); if(!view) return;
-    if(name==='home'){
-      var oc=view.querySelector('.offercard'); if(oc){ oc.style.animation='none'; void oc.offsetWidth; oc.style.animation=''; }
-      var pts=view.querySelector('[data-points]'); if(pts) countTo(pts, 1145, {from:1025, dur:900});
-      var pr=view.querySelector('[data-prog]'); if(pr){ pr.style.width='0'; setTimeout(function(){ pr.style.width=(pr.getAttribute('data-prog')||88)+'%'; },140); }
-    } else if(name==='shop'){
-      var sv=view.querySelector('[data-save]'); if(sv) countTo(sv, 612, {from:0, prefix:'A$', dur:900});
-    }
+    view.querySelectorAll('[data-count]').forEach(function(el){ countTo(el, +el.getAttribute('data-count'), {from:(+el.getAttribute('data-from')||0), prefix:el.getAttribute('data-prefix')||'', dur:850}); });
+    view.querySelectorAll('[data-fill]').forEach(function(el){ el.style.width='0'; setTimeout(function(){ el.style.width=el.getAttribute('data-fill')+'%'; },180); });
   }
   var phone = document.getElementById('phone');
   var userInteracted = false;
@@ -771,7 +833,7 @@
     setTimeout(function(){ pushNote('You earned 120 points','Aurora Skin · just now'); }, 1400);
   }
 
-  var tour = [ {s:'home',wait:4200}, {s:'rewards',wait:3600,note:['A member perk is waiting','Glow facial unlocked']}, {s:'shop',wait:3600,note:['Membership unlocked','Aurora+ · saving you A$612/yr']}, {s:'book',wait:3800,note:['Booked!','Reward attached automatically']} ];
+  var tour = [ {s:'home',wait:4200}, {s:'shop',wait:3600,note:['Treatments, curated','Member pricing in-app']}, {s:'rewards',wait:3600,note:['A member perk is waiting','Glow cash added']}, {s:'book',wait:3800,note:['Booked!','Reward attached automatically']} ];
   var ti = 0, tourTimer;
   function tourStep(){ if (userInteracted || reduce) return; var step = tour[ti % tour.length]; setScreen(phone, step.s); if (step.note) pushNote(step.note[0], step.note[1]); ti++; tourTimer = setTimeout(tourStep, step.wait); }
 
