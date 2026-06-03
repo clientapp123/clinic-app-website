@@ -88,6 +88,13 @@
   .center .sec-head { margin: 0 auto; }
   .sec-head h2 { font-size: clamp(30px,4.2vw,52px); }
   .sec-head p { color: var(--muted); font-size: 19px; margin-top: 16px; }
+  /* confirmation-bias "you already know this" band */
+  .truths { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(20px,3vw,44px); margin-top: clamp(34px,4vw,52px); }
+  .truth { border-top: 2px solid var(--line); padding-top: 18px; }
+  .truth .tn { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+  .truth h4 { font-family: var(--font-display); font-weight: 800; font-size: clamp(19px,1.7vw,23px); letter-spacing: -0.02em; margin-top: 11px; }
+  .truth p { color: var(--muted); font-size: 16px; line-height: 1.5; margin-top: 9px; }
+  @media (max-width: 940px) { .truths { grid-template-columns: 1fr; gap: 26px; } }
 
   /* ===================== HERO + LIVE DEMO ===================== */
   .hero { padding: clamp(28px,4vw,56px) 0 clamp(44px,6vw,84px); position: relative; overflow-x: clip; }
@@ -593,6 +600,18 @@
           <div class="home-ind"></div>
         </div>
       </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROBLEM (CONFIRMATION BIAS) ===================== -->
+<section class="pad" id="why">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow kicker">The part you already know</span><h2>You're not short on patients. You're short on reasons to come back.</h2></div>
+    <div class="truths">
+      <div class="truth"><div class="tn">01 — The work is great</div><h4>Your results speak for themselves.</h4><p>Patients leave happy, and they mean it when they say they'll be back. The clinical side isn't the problem.</p></div>
+      <div class="truth"><div class="tn">02 — Happy isn't booked</div><h4>Then life gets busy.</h4><p>Without a reason and a nudge, most won't rebook until they need you again — months later, if at all.</p></div>
+      <div class="truth"><div class="tn">03 — The loyalty exists</div><h4>There's just nothing holding it.</h4><p>No membership, no points, no reason to return on a schedule. The loyalty is real — it's slipping through the gaps between visits.</p></div>
     </div>
   </div>
 </section>
