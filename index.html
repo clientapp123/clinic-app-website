@@ -332,7 +332,19 @@
     .fchip { display: none; }
     .fcard { grid-template-columns: 110px 1fr; gap: 18px; }
   }
-  @media (max-width: 560px) { body { font-size: 16px; } .timeline { grid-template-columns: 1fr; } .stage { transform: scale(0.96); } }
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    .timeline { grid-template-columns: 1fr; }
+    /* immersive, properly-sized device on mobile */
+    .hero { padding-bottom: 48px; }
+    .stage { width: 100%; padding: 8px 0 4px; }
+    .phone { width: min(84vw, 330px); height: auto; aspect-ratio: 300 / 612; padding: 3.4vw; border-radius: 12vw; }
+    .screen { border-radius: 9.5vw; }
+    .glow { width: 96vw; height: 96vw; }
+    .demo-hint { justify-content: center; text-align: center; }
+    .hero-left { text-align: center; }
+    .hero-ctas { justify-content: center; }
+  }
 </style>
 </head>
 <body>
@@ -389,6 +401,8 @@
               </div>
               <div class="offercard"><span class="oi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10z"/></svg></span><div><div class="ot">Worth your attention</div><div class="os">20% off your next HydraFacial</div></div></div>
               <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 8h18M12 8v13"/></svg></span><div><div class="tt">🎉 Birthday gift unlocked</div><div class="ts">A$25 Glow credit · 14 days left</div></div></div>
+              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><div><div class="tt">Book your next visit</div><div class="ts">Your reward attaches automatically</div></div><span class="redeem">Book</span></div>
+              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.2 6.5L21 12l-6.8 2.2L12 22l-2.2-7.8L3 12l6.8-1.5z"/></svg></span><div><div class="tt">2× points this week</div><div class="ts">On all skin treatments</div></div></div>
             </div>
             <!-- REWARDS -->
             <div class="view" data-screen="rewards">
@@ -400,6 +414,8 @@
               </div>
               <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg></span><div><div class="tt">Free brow shape</div><div class="ts">500 pts</div></div><span class="redeem" data-redeem>Redeem</span></div>
               <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></span><div><div class="tt">Refer a friend</div><div class="ts">You both get A$20</div></div><span class="redeem">Share</span></div>
+              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><div><div class="tt">A$50 off a treatment course</div><div class="ts">1,500 pts · keep going</div></div></div>
+              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.2 6.5L21 12l-6.8 2.2L12 22l-2.2-7.8L3 12l6.8-1.5z"/></svg></span><div><div class="tt">Leave a review</div><div class="ts">Earn 100 pts</div></div><span class="redeem">Open</span></div>
             </div>
             <!-- SHOP / MEMBERSHIP -->
             <div class="view" data-screen="shop">
@@ -409,6 +425,8 @@
               <div style="font-family:var(--font-display);font-weight:800;font-size:17px;margin:5px 0 4px;letter-spacing:-.02em">Saved this year</div>
               <div class="save-num"><span data-save>A$612</span></div>
               <div class="tile" style="margin-top:14px"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="tt">1 facial credit / month</div><div class="ts">+ 15% off all skin treatments</div></div></div>
+              <div class="tile"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span><div><div class="tt">Priority booking + member events</div><div class="ts">Exclusive to Aurora+</div></div></div>
+              <button class="bookbtn" style="margin-top:12px">Join Aurora+</button>
             </div>
             <!-- BOOK -->
             <div class="view" data-screen="book">
