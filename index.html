@@ -359,9 +359,11 @@
   .ba-toggle button.on { color: #fff; }
   .ba-toggle .knob { position: absolute; top: 8px; bottom: 8px; left: 8px; width: calc(50% - 8px); border-radius: 100px; background: var(--ink); transition: transform .4s var(--ease); z-index: 1; }
   .ba-toggle.after .knob { transform: translateX(100%); background: var(--grad); }
-  .ba-stage { position: relative; min-height: 300px; }
-  .ba-panel { position: absolute; inset: 0; padding: clamp(28px,4vw,52px); opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ease), transform .5s var(--ease); pointer-events: none; }
-  .ba-panel.on { opacity: 1; transform: none; pointer-events: auto; }
+  .ba-stage { display: grid; grid-template-columns: 1fr 1fr; }
+  .ba-panel { padding: clamp(26px,3.4vw,46px); }
+  .ba-panel.now { border-left: 1px solid var(--line); }
+  .ba-lab { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: inline-block; margin-bottom: 14px; }
+  .ba-panel.now .ba-lab { color: var(--accent); }
   .ba-panel h3 { font-size: clamp(24px,3vw,34px); }
   .ba-list { list-style: none; display: grid; gap: 14px; margin-top: 22px; max-width: 620px; }
   .ba-list li { display: flex; gap: 12px; font-size: 17px; color: var(--ink-2); align-items: flex-start; }
@@ -461,7 +463,8 @@
   }
   @media (max-width: 940px) {
     .nav-links { display: none; }
-    .hero-grid, .calc, .frow, .integ-grid, .founders, .founders .fcard { grid-template-columns: 1fr; }
+    .hero-grid, .calc, .frow, .integ-grid, .founders, .founders .fcard, .ba-stage { grid-template-columns: 1fr; }
+    .ba-panel.now { border-left: none; border-top: 1px solid var(--line); }
     .timeline { grid-template-columns: 1fr 1fr; }
     .tstep::after { display: none; }
     .frow:nth-child(even) .fmedia { order: 0; }
@@ -662,9 +665,9 @@
   <div class="wrap">
     <div class="sec-head center" style="margin-bottom:34px"><span class="eyebrow kicker">Feel the shift</span><h2>Today vs from launch day.</h2></div>
     <div class="ba">
-      <div style="padding:28px 28px 0"><div class="ba-toggle" id="baToggle"><div class="knob"></div><button class="on" data-ba="then">Today</button><button data-ba="now">From launch day</button></div></div>
       <div class="ba-stage">
-        <div class="ba-panel then on" data-ba="then">
+        <div class="ba-panel then">
+          <span class="ba-lab">Today</span>
           <h3>A return-rate problem</h3>
           <ul class="ba-list">
             <li><span>—</span> Patients book once, then disappear</li>
@@ -674,7 +677,8 @@
             <li><span>—</span> Revenue swings month to month</li>
           </ul>
         </div>
-        <div class="ba-panel now" data-ba="now">
+        <div class="ba-panel now">
+          <span class="ba-lab">From launch day</span>
           <h3>You own the relationship</h3>
           <ul class="ba-list">
             <li><span>+</span> Patients join monthly memberships</li>
@@ -935,14 +939,16 @@
   if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ calc(true); } }); },{threshold:0.4}).observe(calcOut); } else { calc(false); }
 
   var baT=document.getElementById('baToggle');
-  baT.querySelectorAll('button').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var v=btn.getAttribute('data-ba');
-      baT.classList.toggle('after', v==='now');
-      baT.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b===btn); });
-      document.querySelectorAll('.ba-panel').forEach(function(p){ p.classList.toggle('on', p.getAttribute('data-ba')===v); });
+  if(baT){
+    baT.querySelectorAll('button').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var v=btn.getAttribute('data-ba');
+        baT.classList.toggle('after', v==='now');
+        baT.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b===btn); });
+        document.querySelectorAll('.ba-panel').forEach(function(p){ p.classList.toggle('on', p.getAttribute('data-ba')===v); });
+      });
     });
-  });
+  }
 
   if(!reduce && fine){
     document.querySelectorAll('[data-tilt]').forEach(function(el){
