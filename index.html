@@ -336,6 +336,7 @@
   .ctrl { margin-top: 26px; }
   .ctrl label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,0.55); display: flex; justify-content: space-between; margin-bottom: 12px; }
   .ctrl label b { color: #fff; font-family: var(--font-display); font-size: 15px; }
+  .anchor-note { display: block; margin-top: 9px; font-size: 12px; color: rgba(255,255,255,0.5); }
   input[type=range] { width: 100%; -webkit-appearance: none; appearance: none; height: 6px; border-radius: 100px; background: rgba(255,255,255,0.18); outline: none; }
   input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--grad); cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.4); }
   input[type=range]::-moz-range-thumb { width: 26px; height: 26px; border: none; border-radius: 50%; background: #D6249F; cursor: pointer; }
@@ -645,13 +646,13 @@
         <h2>Drag the sliders.</h2>
         <p class="lead">A rough model of the monthly recurring revenue memberships could add. Illustrative only — your numbers depend on pricing, retention and volume.</p>
         <div class="ctrl"><label>Members <b><span id="mCount">120</span></b></label><input type="range" id="mSlider" min="20" max="500" value="120" step="10"></div>
-        <div class="ctrl"><label>Membership price / month <b>A$<span id="pCount">99</span></b></label><input type="range" id="pSlider" min="39" max="249" value="99" step="10"></div>
+        <div class="ctrl"><label>Membership price / month <b>A$<span id="pCount">99</span></b></label><input type="range" id="pSlider" min="39" max="249" value="99" step="10"><span class="anchor-note">Often less than a single treatment.</span></div>
       </div>
       <div class="calc-out" id="calcOut">
         <span class="badge" id="badge">🎉 Over A$100k a year</span>
-        <div class="mini">Estimated monthly recurring revenue</div>
-        <div class="mrr" id="mrr">A$11,880</div>
-        <div class="ann"><span id="annual">A$142,560</span> / year</div>
+        <div class="mini">Estimated recurring revenue / year</div>
+        <div class="mrr" id="annual">A$142,560</div>
+        <div class="ann">about <span id="mrr">A$11,880</span> / month</div>
         <div class="bars" id="bars"></div>
         <div class="disc">Illustrative figures — not a guarantee of results.</div>
         <div class="confetti" id="confetti"></div>
