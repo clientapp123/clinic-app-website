@@ -14,6 +14,11 @@ cd clinic-app-website
 python3 -m http.server 8000   # then visit http://localhost:8000
 ```
 
+## Deployment
+
+Hosted on Vercel and connected to this GitHub repo — every push to `main`
+deploys automatically to production. No build step (served as static files).
+
 ## Files
 
 | File | Purpose |
