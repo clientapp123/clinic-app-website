@@ -188,6 +188,25 @@
   .rwd-card .lab { font-size: 9px; font-family: var(--font-mono); letter-spacing: .1em; opacity: .85; text-transform: uppercase; }
   .barwhite { height: 6px; border-radius: 100px; background: rgba(255,255,255,.28); overflow: hidden; margin-top: 8px; }
   .barwhite i { display: block; height: 100%; width: 0; background: #fff; transition: width 1s var(--ease); }
+  /* home screen — gold points / recommended / membership / rebook (matches hero mockup) */
+  .eyebrow-mono { font-family: var(--font-mono); font-size: 9px; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; margin: 9px 0 8px; }
+  .goldcard { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg,#fff,#fbeef6); border: 1px solid var(--line); border-radius: 16px; padding: 13px 15px; box-shadow: var(--sh-sm); }
+  .goldcard b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 26px; line-height: 1; }
+  .goldcard .lbl { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; }
+  .goldcard .vr { font-size: 11px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+  .rec-head { display: flex; align-items: baseline; justify-content: space-between; margin: 14px 0 0; }
+  .rec-head .rh { font-size: 13px; font-weight: 700; }
+  .rec-head .va { font-size: 10.5px; color: var(--accent); font-weight: 600; }
+  .prod .psub { font-size: 9.5px; color: var(--muted); margin-top: 2px; }
+  .memcard { margin-top: 12px; }
+  .memcard .memttl { font-family: var(--font-display); font-weight: 800; font-size: 18px; margin-top: 3px; }
+  .memcard .memsub { font-size: 10.5px; opacity: .9; margin-top: 2px; }
+  .memcard .memrow { display: flex; justify-content: space-between; font-size: 10px; opacity: .92; margin-top: 7px; font-family: var(--font-mono); letter-spacing: .03em; }
+  .rebook { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; margin-top: 11px; }
+  .rebook .tt { font-size: 12.5px; font-weight: 700; }
+  .rebook .ts { font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .rebook .rbtn { background: var(--grad); color: #fff; border: none; border-radius: 100px; padding: 9px 15px; font-size: 11px; font-weight: 700; font-family: var(--font-body); white-space: nowrap; cursor: pointer; transition: transform .15s var(--ease); }
+  .rebook .rbtn:active { transform: scale(.96); }
   .savepill { background: var(--grad-soft); border-radius: 12px; padding: 11px 12px; margin-top: 11px; font-size: 11.5px; display: flex; align-items: center; gap: 8px; }
   .savepill b { color: var(--accent); }
   .savepill .sp-i { width: 24px; height: 24px; border-radius: 50%; background: #fff; display: grid; place-items: center; color: var(--accent); flex: 0 0 24px; }
@@ -508,22 +527,27 @@
             <!-- HOME -->
             <div class="view on" data-screen="home">
               <div class="scr-h"><span class="ttl">Aurora Skin</span><span class="hicons"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg></span></div>
-              <div class="scr-img imgph">
-                <div class="ov"></div>
-                <span class="ptspill"><b><span data-count="1145" data-from="1020">1,145</span></b><span>GOLD</span></span>
-                <div class="wt"><b>Welcome back, Mia</b><span>Doctor-led skin &amp; cosmetic care</span></div>
+              <div class="eyebrow-mono">Welcome back, Mia ✨</div>
+              <div class="goldcard">
+                <div><b><span data-count="1145" data-from="1020">1,145</span></b><span class="lbl">Gold points</span></div>
+                <span class="vr">View rewards →</span>
               </div>
-              <div class="statpills"><span class="sp">Doctor-led</span><span class="sp">Est. 2018</span><span class="sp">7+ treatments</span></div>
-              <button class="bigbtn">Browse treatments</button>
-              <div class="plan">
-                <div class="pk">Your skin plan</div>
-                <h4>Month 1 of 6 · Hydration + collagen</h4>
-                <div class="pm2"><span>1 of 6 visits completed</span><b>17%</b></div>
-                <div class="barline"><i data-fill="17"></i></div>
-                <div class="rec">Recommended next: <b>HydraFacial</b></div>
-                <button class="bigbtn" style="margin-top:12px;padding:11px;font-size:13px">Book next visit</button>
+              <div class="rec-head"><span class="rh">Recommended for you</span><span class="va">View all</span></div>
+              <div class="prods">
+                <div class="prod"><div class="pimg imgph"></div><div class="pbody"><div class="pn">HydraFacial</div><div class="psub">Deep cleanse &amp; glow</div><div class="pp">From A$199</div></div></div>
+                <div class="prod"><div class="pimg imgph2"></div><div class="pbody"><div class="pn">Microneedling</div><div class="psub">Collagen renewal</div><div class="pp">From A$249</div></div></div>
               </div>
-              <div class="tile" style="margin-top:11px"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 8h18M12 8v13"/></svg></span><div><div class="tt">🎉 Birthday gift unlocked</div><div class="ts">A$25 Glow credit · 14 days left</div></div></div>
+              <div class="rwd-card memcard">
+                <div class="lab">Membership</div>
+                <div class="memttl">Glow Membership</div>
+                <div class="memsub">You're saving 20% on every treatment</div>
+                <div class="barwhite"><i data-fill="76"></i></div>
+                <div class="memrow"><span>A$120 until your next reward</span><span>A$500</span></div>
+              </div>
+              <div class="rebook">
+                <div><div class="tt">Rebook your next treatment</div><div class="ts">Stay on track with your glow</div></div>
+                <button class="rbtn">Book now</button>
+              </div>
             </div>
             <!-- SHOP -->
             <div class="view" data-screen="shop">
