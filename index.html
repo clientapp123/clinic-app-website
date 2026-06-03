@@ -91,11 +91,10 @@
 
   /* ===================== HERO + LIVE DEMO ===================== */
   .hero { padding: clamp(18px,3vw,34px) 0 0; }
-  .hero-intro { max-width: 760px; }
-  .hero-intro.center { text-align: center; margin: 0 auto; }
-  .hero h1 { font-size: clamp(38px,5.4vw,68px); letter-spacing: -0.04em; line-height: 0.98; }
-  .hero .lead { margin: 20px auto 0; max-width: 36ch; }
-  .hero-ctas { display: flex; align-items: center; justify-content: center; gap: 22px; margin-top: 28px; flex-wrap: wrap; }
+  .hero-intro { max-width: 620px; }
+  .hero h1 { font-size: clamp(34px,4.4vw,58px); letter-spacing: -0.04em; line-height: 1.0; }
+  .hero .lead { margin: 18px 0 0; max-width: 34ch; }
+  .hero-ctas { display: flex; align-items: center; gap: 22px; margin-top: 26px; flex-wrap: wrap; }
   .demo-hint { margin-top: 30px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); display: flex; align-items: center; gap: 9px; }
   .demo-hint .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(214,36,159,0.5);} 70%{ box-shadow: 0 0 0 10px rgba(214,36,159,0);} 100%{ box-shadow:0 0 0 0 rgba(214,36,159,0);} }
@@ -169,7 +168,7 @@
   .navbar .scan .fab svg { width: 20px; height: 20px; color: #fff; }
 
   /* pinned demo atmosphere */
-  .pin-stage > .pin-cap, .pin-stage > .phone-fit, .pin-stage > .jdots { position: relative; z-index: 2; }
+  .pin-sticky > .phone-fit, .pin-sticky > .jdots { position: relative; z-index: 2; }
   .pin-glow { position: absolute; top: 50%; left: 50%; width: clamp(320px, 50vh, 540px); height: clamp(320px, 50vh, 540px); border-radius: 50%; z-index: 0; pointer-events: none; background: radial-gradient(circle, rgba(255,77,157,0.34), rgba(155,43,224,0.24) 46%, transparent 70%); filter: blur(72px); animation: glowPulse 7s ease-in-out infinite; }
   @keyframes glowPulse { 0%,100% { transform: translate(-50%,-50%) scale(1); opacity: .8; } 50% { transform: translate(-50%,-53%) scale(1.13); opacity: 1; } }
   .pin-orb { position: absolute; border-radius: 50%; z-index: 1; pointer-events: none; filter: blur(1px); opacity: .65; }
@@ -262,13 +261,17 @@
 
   /* ===================== SCROLLYTELLING JOURNEY ===================== */
   .pinwrap { position: relative; }
-  .pin-stage { position: sticky; top: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(14px,2.2vh,24px); padding: 84px 0 24px; }
-  .pin-cap { text-align: center; max-width: 560px; padding: 0 var(--gutter); min-height: 96px; display: flex; flex-direction: column; justify-content: flex-end; }
-  .pin-cap .eyebrow { display: block; margin-bottom: 10px; }
-  .pin-cap h3 { font-size: clamp(22px,3.4vw,36px); letter-spacing: -0.03em; }
-  .pin-cap.swap .eyebrow, .pin-cap.swap h3 { animation: capSwap .5s var(--ease); }
-  @keyframes capSwap { 0% { opacity: 0; transform: translateY(8px);} 100% { opacity: 1; transform: none;} }
-  .pin-steps .pin-step { height: 92vh; }
+  /* desktop: headline+steps left, phone pinned right; mobile: stacked with phone pinned */
+  .hero-demo { display: grid; grid-template-columns: 1.04fr 1fr; grid-template-areas: "intro phone" "steps phone"; column-gap: clamp(28px,5vw,72px); align-items: start; }
+  .hero-intro { grid-area: intro; padding-top: clamp(16px,5vh,56px); }
+  .hero-phone-col { grid-area: phone; }
+  .pin-steps { grid-area: steps; }
+  .pin-sticky { position: sticky; top: 92px; height: calc(100vh - 104px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+  .pin-step { min-height: 82vh; display: flex; flex-direction: column; justify-content: center; opacity: .3; transition: opacity .45s var(--ease); }
+  .pin-step.active { opacity: 1; }
+  .pin-step .jn { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .pin-step h3 { font-size: clamp(24px,2.8vw,36px); margin: 12px 0 12px; letter-spacing: -0.03em; }
+  .pin-step p { color: var(--muted); font-size: 17px; max-width: 40ch; }
   .jdots { display: flex; gap: 9px; }
   .jdots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-2); transition: all .35s var(--ease); }
   .jdots i.on { background: var(--accent); width: 24px; border-radius: 100px; }
@@ -405,7 +408,14 @@
   }
   @media (max-width: 940px) {
     .nav-links { display: none; }
-    .hero-grid, .calc, .frow, .integ-grid, .founders, .fcard { grid-template-columns: 1fr; }
+    .hero-demo { grid-template-columns: 1fr; grid-template-areas: "intro" "phone" "steps"; }
+    .hero-intro { text-align: center; max-width: 100%; }
+    .hero-intro .lead { margin-left: auto; margin-right: auto; }
+    .hero-ctas { justify-content: center; }
+    .pin-sticky { position: sticky; top: 66px; height: auto; padding: 6px 0 2px; }
+    .pin-step { min-height: 54vh; text-align: center; }
+    .pin-step p { margin-left: auto; margin-right: auto; }
+    .calc, .frow, .integ-grid, .founders, .fcard { grid-template-columns: 1fr; }
     .timeline { grid-template-columns: 1fr 1fr; }
     .tstep::after { display: none; }
     .frow:nth-child(even) .fmedia { order: 0; }
@@ -415,13 +425,6 @@
   @media (max-width: 560px) {
     body { font-size: 16px; }
     .timeline { grid-template-columns: 1fr; }
-    /* immersive, properly-sized device on mobile */
-    .hero { padding-bottom: 48px; }
-    .stage { width: 100%; padding: 8px 0 4px; }
-    .glow { width: 96vw; height: 96vw; }
-    .demo-hint { justify-content: center; text-align: center; }
-    .hero-left { text-align: center; }
-    .hero-ctas { justify-content: center; }
   }
 </style>
 </head>
@@ -443,20 +446,18 @@
 
 <!-- ===================== HERO + LIVE DEMO ===================== -->
 <section class="hero pinwrap" id="demo">
-  <div class="wrap hero-intro center">
-    <span class="eyebrow kicker">For skin &amp; aesthetic clinics</span>
-    <h1>Your patients already trust you. <span class="grad-text">Bring them back every month.</span></h1>
-    <p class="lead">Your clinic's own branded app — memberships, rewards and booking. Scroll to watch it work, or tap any tab.</p>
-    <div class="hero-ctas"><a href="#book" class="btn btn-ink" data-magnetic>Book a demo</a><a href="#revenue" class="tlink">See the revenue math ↓</a></div>
-  </div>
-
-  <div class="pin-stage">
-    <div class="pin-glow"></div>
-    <span class="pin-orb o1"></span><span class="pin-orb o2"></span><span class="pin-orb o3"></span><span class="pin-orb o4"></span>
-    <div class="pin-cap" id="pinCap">
-      <span class="eyebrow" id="capK">The patient loop · 01</span>
-      <h3 id="capT">A branded home screen that feels like yours</h3>
+  <div class="wrap hero-demo">
+    <div class="hero-intro">
+      <span class="eyebrow kicker">For skin &amp; aesthetic clinics</span>
+      <h1>Your patients already trust you. <span class="grad-text">Bring them back every month.</span></h1>
+      <p class="lead">Your clinic's own branded app — memberships, rewards and booking. Scroll to watch it work, or tap any tab.</p>
+      <div class="hero-ctas"><a href="#book" class="btn btn-ink" data-magnetic>Book a demo</a><a href="#revenue" class="tlink">See the revenue math ↓</a></div>
     </div>
+
+    <div class="hero-phone-col">
+      <div class="pin-sticky">
+        <div class="pin-glow"></div>
+        <span class="pin-orb o1"></span><span class="pin-orb o2"></span><span class="pin-orb o3"></span><span class="pin-orb o4"></span>
     <div class="phone-fit float"><div class="phone" id="phone">
         <span class="pbtn v1"></span><span class="pbtn v2"></span>
         <div class="screen">
@@ -535,14 +536,16 @@
           <div class="home-ind"></div>
         </div>
       </div></div>
-      <div class="jdots" id="jdots"><i class="on"></i><i></i><i></i><i></i></div>
+        <div class="jdots" id="jdots"><i class="on"></i><i></i><i></i><i></i></div>
+      </div>
     </div>
     <div class="pin-steps">
-      <div class="pin-step" data-screen="home" data-k="The patient loop · 01" data-t="A branded home screen that feels like yours"></div>
-      <div class="pin-step" data-screen="shop" data-k="The patient loop · 02" data-t="Treatments and member pricing, in-app"></div>
-      <div class="pin-step" data-screen="rewards" data-k="The patient loop · 03" data-t="Points, perks and cash they can feel"></div>
-      <div class="pin-step" data-screen="book" data-k="The patient loop · 04" data-t="The next visit is one tap away"></div>
+      <div class="pin-step active" data-screen="home"><div class="jn">The patient loop · 01</div><h3>A branded home screen that feels like yours</h3><p>Patients open your app to points, perks and their next visit — not a generic booking form.</p></div>
+      <div class="pin-step" data-screen="shop"><div class="jn">· 02</div><h3>Treatments and member pricing, in-app</h3><p>Browse, see member prices and earn points — they buy without ever leaving your brand.</p></div>
+      <div class="pin-step" data-screen="rewards"><div class="jn">· 03</div><h3>Points, perks and cash they can feel</h3><p>Rewards, Glow cash and referrals give patients a reason to come back and bring friends.</p></div>
+      <div class="pin-step" data-screen="book"><div class="jn">· 04</div><h3>The next visit is one tap away</h3><p>Booking syncs with the system you already use, reward attached automatically.</p></div>
     </div>
+  </div>
 </section>
 
 <!-- ===================== INTEGRATIONS STRIP ===================== -->
@@ -765,16 +768,12 @@
   function fitPhone(phone){
     var fit = phone.parentElement;
     if(!fit || fit.className.indexOf('phone-fit') < 0) return;
-    var s, pin = phone.closest('.pin-stage');
-    if(pin){
-      var aw = pin.clientWidth - 24;
-      var cap = pin.querySelector('.pin-cap'), dots = pin.querySelector('.jdots');
-      var ah = window.innerHeight - 78 - (cap ? cap.offsetHeight : 96) - (dots ? dots.offsetHeight : 18) - 52;
-      s = Math.min(aw/340, ah/735, 1.08);
-    } else {
-      var st = phone.closest('.stage');
-      s = Math.min(((st ? st.clientWidth : 340) - 6)/340, 1);
-    }
+    var host = phone.closest('.pin-sticky'); if(!host) return;
+    var mobile = window.innerWidth <= 940;
+    var aw = host.clientWidth - 8;
+    var dots = host.querySelector('.jdots');
+    var ah = mobile ? window.innerHeight * 0.6 : (window.innerHeight - 104 - (dots ? dots.offsetHeight : 18) - 14);
+    var s = Math.min(aw/340, ah/735, mobile ? 1 : 1.06);
     s = Math.max(0.5, s);
     phone.style.setProperty('--s', s);
     fit.style.width = (340*s) + 'px'; fit.style.height = (735*s) + 'px';
@@ -808,7 +807,7 @@
   }
   function sparkle(root){
     if(reduce) return;
-    var host = root.closest('.pin-stage') || root.closest('.stage'); if(!host) return;
+    var host = root.closest('.pin-sticky'); if(!host) return;
     for(var i=0;i<9;i++){ (function(){
       var s=document.createElement('span'); s.className='spark'; s.style.left='50%'; s.style.top='44%';
       host.appendChild(s);
@@ -825,17 +824,15 @@
 
   var pinSteps = document.querySelectorAll('.pin-step');
   var jdots = document.querySelectorAll('#jdots i');
-  var capK = document.getElementById('capK'), capT = document.getElementById('capT'), pinCap = document.getElementById('pinCap');
   var notes = { shop:['Treatments, curated','Member pricing in-app'], rewards:['A member perk is waiting','Glow cash added'], book:['Booked!','Reward attached automatically'] };
   var curPin = -1;
   function setPin(idx, el){
     if (idx === curPin) return; curPin = idx;
     var sc = el.getAttribute('data-screen');
-    capK.textContent = el.getAttribute('data-k'); capT.textContent = el.getAttribute('data-t');
+    pinSteps.forEach(function(s){ s.classList.remove('active'); }); el.classList.add('active');
     jdots.forEach(function(d,i){ d.classList.toggle('on', i===idx); });
     setScreen(phone, sc);
     if(notes[sc]) pushNote(notes[sc][0], notes[sc][1]);
-    if(!reduce){ pinCap.classList.remove('swap'); void pinCap.offsetWidth; pinCap.classList.add('swap'); }
   }
   if (pinSteps.length && 'IntersectionObserver' in window){
     var jo = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ setPin(Array.prototype.indexOf.call(pinSteps, e.target), e.target); } }); }, {threshold:0, rootMargin:'-50% 0px -50% 0px'});
