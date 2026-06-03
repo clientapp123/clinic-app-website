@@ -181,14 +181,16 @@
   .logo { flex: 0 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 100px; padding: 12px 20px; font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--ink-2); letter-spacing: -0.02em; white-space: nowrap; }
 
   /* ===================== SCROLLYTELLING JOURNEY ===================== */
-  .journey { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px,6vw,80px); align-items: start; }
-  .journey-sticky { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; }
-  .journey-steps { display: flex; flex-direction: column; }
-  .jstep { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; padding: 20px 0; opacity: 0.32; transition: opacity .45s var(--ease); }
-  .jstep.active { opacity: 1; }
-  .jstep .jn { font-family: var(--font-mono); font-size: 13px; color: var(--accent); font-weight: 700; }
-  .jstep h3 { font-size: clamp(26px,3vw,38px); margin: 14px 0 14px; letter-spacing: -0.03em; }
-  .jstep p { color: var(--muted); font-size: 18px; max-width: 42ch; }
+  .pinwrap { position: relative; }
+  .pin-stage { position: sticky; top: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(14px,2.2vh,24px); padding: 84px 0 24px; }
+  .pin-cap { text-align: center; max-width: 560px; padding: 0 var(--gutter); }
+  .pin-cap .eyebrow { display: block; margin-bottom: 10px; }
+  .pin-cap h3 { font-size: clamp(22px,3.4vw,36px); letter-spacing: -0.03em; }
+  .pin-cap.swap .eyebrow, .pin-cap.swap h3 { animation: capSwap .5s var(--ease); }
+  @keyframes capSwap { 0% { opacity: 0; transform: translateY(8px);} 100% { opacity: 1; transform: none;} }
+  .pin-stage .phone { width: auto; height: min(66vh, 580px); aspect-ratio: 300 / 612; padding: 1.6vh; border-radius: 8vh; }
+  .pin-stage .screen { border-radius: 6vh; }
+  .pin-steps .pin-step { height: 92vh; }
   .jdots { display: flex; gap: 9px; }
   .jdots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-2); transition: all .35s var(--ease); }
   .jdots i.on { background: var(--accent); width: 24px; border-radius: 100px; }
@@ -326,12 +328,9 @@
   }
   @media (max-width: 940px) {
     .nav-links { display: none; }
-    .hero-grid, .journey, .calc, .frow, .integ-grid, .founders, .fcard { grid-template-columns: 1fr; }
+    .hero-grid, .calc, .frow, .integ-grid, .founders, .fcard { grid-template-columns: 1fr; }
     .timeline { grid-template-columns: 1fr 1fr; }
     .tstep::after { display: none; }
-    .journey-sticky { position: sticky; top: 60px; height: auto; order: -1; padding: 8px 0; gap: 14px; }
-    .journey-sticky .phone { width: 56vw; max-width: 232px; }
-    .jstep { min-height: 62vh; }
     .frow:nth-child(even) .fmedia { order: 0; }
     .fchip { display: none; }
     .fcard { grid-template-columns: 110px 1fr; gap: 18px; }
@@ -472,28 +471,33 @@
   </div>
 </section>
 
-<!-- ===================== SCROLLYTELLING JOURNEY ===================== -->
-<section class="pad">
-  <div class="wrap">
-    <div class="sec-head" style="margin-bottom:20px"><span class="eyebrow kicker">The patient loop</span><h2>One visit becomes a habit.</h2></div>
-    <div class="journey">
-      <div class="journey-steps">
-        <div class="jstep active" data-screen="home"><div class="jn">01 — They arrive</div><h3>A branded home screen that feels like yours</h3><p>Patients open your app to points, perks and their next visit — not a generic booking form. It feels like a relationship, not a transaction.</p></div>
-        <div class="jstep" data-screen="rewards"><div class="jn">02 — They're rewarded</div><h3>Every visit earns something back</h3><p>Points climb, rewards unlock, referrals are one tap away. The progress bar pulls them toward the next reward — and the next booking.</p></div>
-        <div class="jstep" data-screen="shop"><div class="jn">03 — They commit</div><h3>Membership that obviously pays for itself</h3><p>When the savings are visible, joining is easy. That's recurring revenue for you and a better routine for them.</p></div>
-        <div class="jstep" data-screen="book"><div class="jn">04 — They rebook</div><h3>The next visit is one tap away</h3><p>Booking syncs with the system you already use, with their reward attached automatically. Fewer gaps in your diary.</p></div>
-      </div>
-      <div class="journey-sticky">
-        <div class="phone" id="phone2" data-tilt style="transform:none">
-          <div class="screen">
-            <div class="island"></div>
-            <div class="statusbar"><span>9:41</span><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="14" width="3" height="6" rx="1"/><rect x="7" y="10" width="3" height="10" rx="1"/><rect x="12" y="6" width="3" height="14" rx="1"/><rect x="17" y="3" width="3" height="17" rx="1"/></svg></div>
-            <div class="views" id="views2"></div>
-          </div>
+<!-- ===================== PINNED PRODUCT DEMO ===================== -->
+<section class="pinwrap" id="loop">
+  <div class="pin-stage">
+    <div class="pin-cap" id="pinCap">
+      <span class="eyebrow" id="capK">The patient loop · 01</span>
+      <h3 id="capT">A branded home screen that feels like yours</h3>
+    </div>
+    <div class="phone" id="phone2">
+      <div class="screen">
+        <div class="island"></div>
+        <div class="statusbar"><span>9:41</span><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="14" width="3" height="6" rx="1"/><rect x="7" y="10" width="3" height="10" rx="1"/><rect x="12" y="6" width="3" height="14" rx="1"/><rect x="17" y="3" width="3" height="17" rx="1"/></svg></div>
+        <div class="views" id="views2"></div>
+        <div class="navbar" id="navbar2">
+          <button data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>Home</button>
+          <button data-go="rewards"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg>Rewards</button>
+          <button data-go="shop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>Shop</button>
+          <button data-go="book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Book</button>
         </div>
-        <div class="jdots" id="jdots"><i class="on"></i><i></i><i></i><i></i></div>
       </div>
     </div>
+    <div class="jdots" id="jdots"><i class="on"></i><i></i><i></i><i></i></div>
+  </div>
+  <div class="pin-steps">
+    <div class="pin-step" data-screen="home" data-k="The patient loop · 01" data-t="A branded home screen that feels like yours"></div>
+    <div class="pin-step" data-screen="rewards" data-k="The patient loop · 02" data-t="Every visit earns something back"></div>
+    <div class="pin-step" data-screen="shop" data-k="The patient loop · 03" data-t="Membership that obviously pays for itself"></div>
+    <div class="pin-step" data-screen="book" data-k="The patient loop · 04" data-t="The next visit is one tap away"></div>
   </div>
 </section>
 
@@ -737,11 +741,20 @@
     new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ runHero(); if(!reduce && !userInteracted){ clearTimeout(tourTimer); ti=0; tourTimer=setTimeout(tourStep, 2800); } } else { clearTimeout(tourTimer); } }); }, {threshold:0.4}).observe(phone);
   } else { runHero(); }
 
-  var steps = document.querySelectorAll('.jstep');
+  var pinSteps = document.querySelectorAll('.pin-step');
   var jdots = document.querySelectorAll('#jdots i');
+  var capK = document.getElementById('capK'), capT = document.getElementById('capT'), pinCap = document.getElementById('pinCap');
+  var curPin = -1;
+  function setPin(idx, el){
+    if (idx === curPin) return; curPin = idx;
+    capK.textContent = el.getAttribute('data-k'); capT.textContent = el.getAttribute('data-t');
+    jdots.forEach(function(d,i){ d.classList.toggle('on', i===idx); });
+    setScreen(document.getElementById('phone2'), el.getAttribute('data-screen'));
+    if(!reduce){ pinCap.classList.remove('swap'); void pinCap.offsetWidth; pinCap.classList.add('swap'); }
+  }
   if (views2 && 'IntersectionObserver' in window){
-    var jo = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var idx = Array.prototype.indexOf.call(steps, e.target); steps.forEach(function(s){ s.classList.remove('active'); }); e.target.classList.add('active'); jdots.forEach(function(d,i){ d.classList.toggle('on', i===idx); }); setScreen(document.getElementById('phone2'), e.target.getAttribute('data-screen')); } }); }, {threshold:0, rootMargin:'-48% 0px -48% 0px'});
-    steps.forEach(function(s){ jo.observe(s); });
+    var jo = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ setPin(Array.prototype.indexOf.call(pinSteps, e.target), e.target); } }); }, {threshold:0, rootMargin:'-50% 0px -50% 0px'});
+    pinSteps.forEach(function(s){ jo.observe(s); });
     setScreen(document.getElementById('phone2'), 'home');
   } else if (views2){ setScreen(document.getElementById('phone2'),'home'); }
 
