@@ -411,7 +411,7 @@
 
   /* ===================== FOUNDERS ===================== */
   .founders { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,4vw,48px); margin-top: 48px; }
-  .founders .fcard { display: grid; grid-template-columns: 130px 1fr; gap: 24px; align-items: start; }
+  .founder-card { display: grid; grid-template-columns: 130px 1fr; gap: 24px; align-items: start; }
   .fportrait { aspect-ratio: 4/5; border-radius: var(--r); overflow: hidden; position: relative; box-shadow: var(--sh); }
   .fportrait .photo.pf1 { background: linear-gradient(150deg,#EAD2BF,#D7AFB4 55%,#B79AD0); }
   .fportrait .photo.pf2 { background: linear-gradient(150deg,#E7D6C4,#D9B3C2 52%,#B49AD6); }
@@ -492,13 +492,13 @@
   }
   @media (max-width: 940px) {
     .nav-links { display: none; }
-    .hero-grid, .calc, .frow, .integ-grid, .founders, .founders .fcard, .ba-stage { grid-template-columns: 1fr; }
+    .hero-grid, .calc, .frow, .integ-grid, .founders, .founder-card, .ba-stage { grid-template-columns: 1fr; }
     .ba-panel.now { border-left: none; border-top: 1px solid var(--line); }
     .timeline { grid-template-columns: 1fr 1fr; }
     .tstep::after { display: none; }
     .frow:nth-child(even) .fmedia { order: 0; }
     .fchip { display: none; }
-    .founders .fcard { grid-template-columns: 110px 1fr; gap: 18px; }
+    .founder-card { grid-template-columns: 110px 1fr; gap: 18px; }
   }
   @media (max-width: 560px) {
     body { font-size: 16px; }
@@ -756,7 +756,7 @@
   <div class="wrap">
     <div class="sec-head"><span class="eyebrow kicker">Who's behind it</span><h2>Built by people who actually understand clinics.</h2><p>Not a faceless SaaS. Two founders — one builds the product, one has lived the beauty industry.</p></div>
     <div class="founders">
-      <div class="fcard">
+      <div class="founder-card">
         <div class="fportrait"><div class="photo pf1"></div></div>
         <div>
           <div class="fname">[Founder name]</div>
@@ -765,7 +765,7 @@
           <p class="fquote">"I wanted clinics to own the relationship with their patients — not rent it from a booking platform. So we built the app to live under your brand, and made the tech invisible."</p>
         </div>
       </div>
-      <div class="fcard">
+      <div class="founder-card">
         <div class="fportrait"><div class="photo pf2"></div></div>
         <div>
           <div class="fname">[Founder name]</div>
@@ -1004,7 +1004,7 @@
   }
 
   if(!reduce && 'IntersectionObserver' in window){
-    var rEls=document.querySelectorAll('.hero-left>*, .sec-head, .truth, .frow, .founders .fcard, .mem-row, .ba, .calc, .faq-item, .bleed-in, .integ-grid>*, .tstep, .tl-banner');
+    var rEls=document.querySelectorAll('.hero-left>*, .sec-head, .truth, .frow, .founder-card, .mem-row, .ba, .calc, .faq-item, .bleed-in, .integ-grid>*, .tstep, .tl-banner');
     var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:0.12});
     rEls.forEach(function(el,i){ el.classList.add('reveal'); el.style.transitionDelay=((i%4)*60)+'ms'; io.observe(el); });
   }
