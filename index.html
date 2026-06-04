@@ -380,6 +380,9 @@
   .ba-panel.now { border-left: 1px solid var(--line); }
   .ba-lab { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: inline-block; margin-bottom: 14px; }
   .ba-panel.now .ba-lab { color: var(--accent); }
+  .ba-verdict { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); font-family: var(--font-display); font-weight: 800; font-size: 17px; letter-spacing: -0.01em; }
+  .ba-verdict.then-v { color: var(--faint); }
+  .ba-verdict.now-v { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .ba-panel h3 { font-size: clamp(24px,3vw,34px); }
   .ba-list { list-style: none; display: grid; gap: 14px; margin-top: 22px; max-width: 620px; }
   .ba-list li { display: flex; gap: 12px; font-size: 17px; color: var(--ink-2); align-items: flex-start; }
@@ -682,6 +685,7 @@
             <li><span>—</span> No structured way to reward loyalty or drive referrals</li>
             <li><span>—</span> Revenue swings month to month</li>
           </ul>
+          <div class="ba-verdict then-v">The slow leak — easy to keep living with.</div>
         </div>
         <div class="ba-panel now">
           <span class="ba-lab">From launch day</span>
@@ -693,6 +697,7 @@
             <li><span>+</span> Points, rewards and easy referrals keep them engaged</li>
             <li><span>+</span> Your brand feels more premium</li>
           </ul>
+          <div class="ba-verdict now-v">A compounding asset you actually own.</div>
         </div>
       </div>
     </div>
