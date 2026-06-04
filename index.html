@@ -343,8 +343,12 @@
   .anchor-note { display: block; margin-top: 9px; font-size: 12px; color: rgba(255,255,255,0.5); }
   .calc-instr { font-family: var(--font-display); font-weight: 800; font-size: 24px; letter-spacing: -0.02em; color: #fff; }
   input[type=range] { width: 100%; -webkit-appearance: none; appearance: none; height: 6px; border-radius: 100px; background: rgba(255,255,255,0.18); outline: none; }
-  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--grad); cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.4); }
-  input[type=range]::-moz-range-thumb { width: 26px; height: 26px; border: none; border-radius: 50%; background: #D6249F; cursor: pointer; }
+  input[type=range] { cursor: grab; }
+  input[type=range]:active { cursor: grabbing; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: var(--grad); cursor: grab; border: 3px solid #fff; box-shadow: 0 4px 14px rgba(0,0,0,0.4); transition: transform .15s var(--ease); }
+  input[type=range]:hover::-webkit-slider-thumb { transform: scale(1.12); }
+  input[type=range]:active::-webkit-slider-thumb { cursor: grabbing; transform: scale(1.12); }
+  input[type=range]::-moz-range-thumb { width: 26px; height: 26px; border: 3px solid #fff; border-radius: 50%; background: #D6249F; cursor: grab; }
   .calc-out { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--r-lg); padding: 28px; position: relative; overflow: hidden; transition: box-shadow .5s var(--ease); }
   .calc-out.celebrate { box-shadow: 0 0 0 1px rgba(255,93,168,0.5), 0 0 60px -10px rgba(214,36,159,0.6); }
   .calc-out .mini { color: rgba(255,255,255,0.5); }
