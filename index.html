@@ -313,7 +313,8 @@
   .integ h3 { font-size: clamp(22px,2.4vw,30px); letter-spacing: -0.03em; }
   .integ p { color: var(--muted); font-size: 16px; margin-top: 12px; max-width: 42ch; }
   .integ .scan { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-family: var(--font-mono); font-size: 12px; color: var(--accent); font-weight: 700; }
-  .marquee { overflow: hidden; -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .mq-label { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .mq-window { overflow: hidden; -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
   .mtrack { display: flex; gap: 14px; width: max-content; animation: marquee 32s linear infinite; }
   .marquee:hover .mtrack { animation-play-state: paused; }
   @keyframes marquee { to { transform: translateX(-50%); } }
@@ -721,9 +722,12 @@
       <span class="scan"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5v14M7 5v14M11 5v14M15 5v14M19 5v14"/></svg> Scan &amp; go</span>
     </div>
     <div class="marquee">
-      <div class="mtrack" id="mtrack">
-        <span class="logo">Stripe</span><span class="logo">Klarna</span><span class="logo">Afterpay</span><span class="logo">Square</span><span class="logo">Cliniko</span><span class="logo">Calendly</span><span class="logo">Google Reviews</span><span class="logo">Apple Pay</span>
-        <span class="logo">Stripe</span><span class="logo">Klarna</span><span class="logo">Afterpay</span><span class="logo">Square</span><span class="logo">Cliniko</span><span class="logo">Calendly</span><span class="logo">Google Reviews</span><span class="logo">Apple Pay</span>
+      <span class="mq-label">Works with your stack</span>
+      <div class="mq-window">
+        <div class="mtrack" id="mtrack">
+          <span class="logo">Stripe</span><span class="logo">Klarna</span><span class="logo">Afterpay</span><span class="logo">Square</span><span class="logo">Cliniko</span><span class="logo">Calendly</span><span class="logo">Google Reviews</span><span class="logo">Apple Pay</span>
+          <span class="logo">Stripe</span><span class="logo">Klarna</span><span class="logo">Afterpay</span><span class="logo">Square</span><span class="logo">Cliniko</span><span class="logo">Calendly</span><span class="logo">Google Reviews</span><span class="logo">Apple Pay</span>
+        </div>
       </div>
     </div>
   </div>
