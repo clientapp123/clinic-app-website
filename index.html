@@ -318,8 +318,10 @@
   .integ h3 { font-size: clamp(22px,2.4vw,30px); letter-spacing: -0.03em; }
   .integ p { color: var(--muted); font-size: 16px; margin-top: 12px; max-width: 42ch; }
   .integ .scan { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-family: var(--font-mono); font-size: 12px; color: var(--accent); font-weight: 700; }
+  .integ-grid > * { min-width: 0; }
+  .marquee { min-width: 0; }
   .mq-label { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
-  .mq-window { overflow: hidden; -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .mq-window { min-width: 0; overflow: hidden; -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
   .mtrack { display: flex; gap: 14px; width: max-content; animation: marquee 32s linear infinite; }
   .marquee:hover .mtrack { animation-play-state: paused; }
   @keyframes marquee { to { transform: translateX(-50%); } }
@@ -407,7 +409,58 @@
   .pA { background: linear-gradient(140deg,#F3D9C7,#ECC6C6 48%,#DCC4E0); }
   .pB { background: linear-gradient(140deg,#EAD8C6,#E7C9CE 50%,#CFC3E4); }
   .pC { background: linear-gradient(140deg,#F4DCC4,#E9C4CF 55%,#D6C6E6); }
+  /* feature-row gradients removed where an app animation sits on top */
+  .fmedia:has(.appfx) .pA, .fmedia:has(.appfx) .pB, .fmedia:has(.appfx) .pC { background: none; }
   .photo .cap { position: absolute; left: 14px; bottom: 12px; z-index: 2; font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: rgba(14,12,18,0.45); }
+
+  /* ===== Animated app mockups inside feature media ===== */
+  /* strip the gradient card so the animation floats on the page grid */
+  .fmedia:has(.appfx), .fmedia:has(.appfx):hover { background: transparent; box-shadow: none; overflow: visible; }
+  .fmedia:has(.appfx) .photo { display: none; }
+  .appfx { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; overflow: visible; pointer-events: none; }
+  .fx-stack { display: flex; flex-direction: column; align-items: center; gap: clamp(10px,2.4%,18px); width: 100%; }
+  .fx-pill { background: #fff; color: var(--ink); border: 1px solid var(--line); box-shadow: var(--sh-sm); font-family: var(--font-mono); font-size: clamp(9px,1.4vw,11.5px); letter-spacing: .02em; padding: 8px 14px; border-radius: 100px; white-space: nowrap; }
+  @keyframes fxFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
+  /* 1 — Membership card */
+  .fx-mem .memcard { position: relative; width: clamp(190px,62%,340px); aspect-ratio: 1.6/1; border-radius: 18px; background: var(--grad); box-shadow: var(--sh-lg); padding: 7% 8%; color: #fff; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; animation: fxFloat 6s var(--ease) infinite; }
+  .fx-mem .mc-top { display: flex; align-items: center; justify-content: space-between; }
+  .fx-mem .mc-brand { font-family: var(--font-mono); font-weight: 700; font-size: clamp(9px,1.4vw,12px); letter-spacing: .18em; }
+  .fx-mem .mc-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.9); animation: memPulse 2.4s ease-in-out infinite; }
+  @keyframes memPulse { 0%,100% { box-shadow: 0 0 0 3px rgba(255,255,255,.28); } 50% { box-shadow: 0 0 0 9px rgba(255,255,255,0); } }
+  .fx-mem .mc-num { font-family: var(--font-mono); font-size: clamp(11px,1.7vw,15px); letter-spacing: .1em; opacity: .96; }
+  .fx-mem .mc-bot { display: flex; align-items: flex-end; justify-content: space-between; }
+  .fx-mem .mc-name { font-family: var(--font-mono); font-size: clamp(8px,1.2vw,11px); letter-spacing: .1em; opacity: .92; }
+  .fx-mem .mc-chip { font-family: var(--font-mono); font-size: clamp(8px,1.1vw,10px); letter-spacing: .1em; background: rgba(255,255,255,.22); padding: 3px 9px; border-radius: 100px; }
+  .fx-mem .mc-shine { position: absolute; top: -60%; left: -45%; width: 38%; height: 220%; transform: rotate(18deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent); animation: shine 5s ease-in-out infinite; }
+  @keyframes shine { 0% { left: -45%; } 55%,100% { left: 135%; } }
+
+  /* 2 — Push notifications */
+  .fx-push .fx-stack { gap: clamp(8px,1.8%,14px); }
+  .fx-push .pushcard { display: flex; gap: 11px; align-items: flex-start; width: clamp(220px,74%,380px); background: rgba(255,255,255,.92); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border: 1px solid var(--line); box-shadow: var(--sh); border-radius: 16px; padding: 12px 14px; animation: notifCycle 5s var(--ease) infinite; }
+  .fx-push .pc2 { animation-delay: 2.5s; }
+  @keyframes notifCycle { 0% { transform: translateY(18px) scale(.94); opacity: 0; } 12% { transform: translateY(0) scale(1); opacity: 1; } 80% { transform: translateY(0) scale(1); opacity: 1; } 94% { transform: translateY(-12px) scale(.97); opacity: 0; } 100% { opacity: 0; } }
+  .fx-push .push-ico { flex: 0 0 auto; width: 34px; height: 34px; border-radius: 9px; background: var(--grad); color: #fff; display: grid; place-items: center; font-size: 15px; box-shadow: 0 6px 14px -6px rgba(155,43,224,.6); }
+  .fx-push .push-body { min-width: 0; }
+  .fx-push .push-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .fx-push .push-app { font-family: var(--font-mono); font-weight: 700; font-size: clamp(9px,1.2vw,11px); letter-spacing: .04em; color: var(--ink); }
+  .fx-push .push-time { font-family: var(--font-mono); font-size: clamp(8px,1vw,10px); color: var(--faint); }
+  .fx-push .push-msg { margin-top: 3px; font-size: clamp(11px,1.4vw,13.5px); color: var(--ink-2); line-height: 1.4; }
+
+  /* 3 — Rewards ring */
+  @property --rp { syntax: '<percentage>'; inherits: false; initial-value: 0%; }
+  .fx-rew .ring { width: clamp(120px,42%,180px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, #fff 76%, transparent 77%), conic-gradient(from -90deg, var(--pink), var(--violet) var(--rp), var(--line) 0); box-shadow: var(--sh); display: grid; place-items: center; animation: ringFill 4.4s var(--ease) infinite, fxFloat 6s var(--ease) infinite; }
+  @keyframes ringFill { 0% { --rp: 6%; } 62% { --rp: 84%; } 100% { --rp: 84%; } }
+  .fx-rew .ring-core { display: flex; flex-direction: column; align-items: center; line-height: 1; }
+  .fx-rew .ring-num { font-family: var(--font-display); font-weight: 800; font-size: clamp(22px,3.4vw,34px); letter-spacing: -.03em; color: var(--ink); }
+  .fx-rew .ring-lbl { font-family: var(--font-mono); font-size: clamp(8px,1vw,10px); letter-spacing: .18em; color: var(--muted); margin-top: 4px; }
+  .fx-rew .pop { position: absolute; font-family: var(--font-mono); font-weight: 700; font-size: clamp(12px,1.7vw,16px); opacity: 0; animation: popUp 4s ease-in-out infinite; }
+  .fx-rew .pop1 { left: 24%; top: 30%; color: var(--accent); animation-delay: .2s; }
+  .fx-rew .pop2 { right: 22%; top: 36%; color: var(--violet); animation-delay: 1.5s; }
+  .fx-rew .pop3 { left: 32%; bottom: 30%; color: var(--pink); animation-delay: 2.8s; }
+  @keyframes popUp { 0% { transform: translateY(12px); opacity: 0; } 22% { opacity: 1; } 60% { transform: translateY(-26px); opacity: 0; } 100% { opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce) { .appfx * { animation: none !important; } .fx-rew .ring { --rp: 68%; } }
 
   /* ===================== FOUNDERS ===================== */
   .founders { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,4vw,48px); margin-top: 48px; }
@@ -718,15 +771,54 @@
     <div class="sec-head" style="margin-bottom:6px"><span class="eyebrow kicker">How you win patients back</span><h2>A growth system, not just a pretty app.</h2></div>
     <div class="frow">
       <div><div class="fn">01 — Memberships</div><h3>Create predictable monthly revenue</h3><p>Sell memberships around your skin and body treatments — monthly credit, member pricing, billed automatically inside your branded app.</p></div>
-      <div class="fmedia" data-tilt><div class="photo pA"></div><span class="cap">Lifestyle — replace with photo</span></div>
+      <div class="fmedia" data-tilt><div class="photo pA"></div>
+        <div class="appfx fx-mem" aria-hidden="true">
+          <div class="fx-stack">
+            <div class="memcard">
+              <div class="mc-top"><span class="mc-brand">GLOW MEMBER</span><span class="mc-dot"></span></div>
+              <div class="mc-num">•••• •••• •••• 4921</div>
+              <div class="mc-bot"><span class="mc-name">SARAH MITCHELL</span><span class="mc-chip">ACTIVE</span></div>
+              <span class="mc-shine"></span>
+            </div>
+            <div class="fx-pill">$80 monthly credit · auto-billed</div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="frow">
       <div><div class="fn">02 — Push offers</div><h3>Fill quiet days, privately</h3><p>Send app-only offers to your patient base when the calendar has gaps — instead of posting a public sale that devalues your brand.</p></div>
-      <div class="fmedia" data-tilt><div class="photo pB"></div><span class="cap">Clinic interior — replace with photo</span></div>
+      <div class="fmedia" data-tilt><div class="photo pB"></div>
+        <div class="appfx fx-push" aria-hidden="true">
+          <div class="fx-stack">
+            <div class="pushcard pc1">
+              <span class="push-ico">✦</span>
+              <div class="push-body">
+                <div class="push-head"><span class="push-app">Clinic App</span><span class="push-time">now</span></div>
+                <div class="push-msg">✨ 20% off facials — today only. Tap to book.</div>
+              </div>
+            </div>
+            <div class="pushcard pc2">
+              <span class="push-ico">✦</span>
+              <div class="push-body">
+                <div class="push-head"><span class="push-app">Clinic App</span><span class="push-time">2m</span></div>
+                <div class="push-msg">💎 Members get first access this Friday.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="frow">
       <div><div class="fn">03 — Rewards &amp; referrals</div><h3>Turn happy patients into growth</h3><p>Points, rewards and one-tap referrals give patients a reason to return — and quietly bring their friends in too.</p></div>
-      <div class="fmedia" data-tilt><div class="photo pC"></div><span class="cap">Lifestyle — replace with photo</span></div>
+      <div class="fmedia" data-tilt><div class="photo pC"></div>
+        <div class="appfx fx-rew" aria-hidden="true">
+          <span class="pop pop1">+10</span><span class="pop pop2">+25</span><span class="pop pop3">★</span>
+          <div class="fx-stack">
+            <div class="ring"><div class="ring-core"><b class="ring-num">250</b><span class="ring-lbl">POINTS</span></div></div>
+            <div class="fx-pill">♡ Refer a friend · +50</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
